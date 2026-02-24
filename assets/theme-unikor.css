@@ -1,4 +1,15 @@
-/* ========== UNIKOR 1:1 STYLES ========== */
+/* ========== HARBA STYLES ========== */
+/* Titles: bold sans (Plus Jakarta Sans 700); body: regular sans (Plus Jakarta Sans 400) */
+.unikor-product-hero__title,
+.unikor-trust__heading,
+.unikor-rich__heading,
+.unikor-guarantee__title,
+.unikor-reviews__score,
+.unikor-faq__heading,
+.unikor-related__heading,
+.unikor-header__logo-text,
+.unikor-footer__logo,
+h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif); font-weight: 700; }
 
 /* ---- Announcement bar: black, white text, centered ---- */
 .announcement-bar { background: #000; color: #fff; text-align: center; padding: 0.5rem 1rem; font-size: 0.9rem; font-weight: 500; }

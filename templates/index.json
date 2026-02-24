@@ -85,16 +85,6 @@
         "heading": "Check Out Our Wireless Version:",
         "products_to_show": 4
       }
-    },
-    "hero": {
-      "type": "hero-banner",
-      "settings": {
-        "heading": "Welcome",
-        "subtext": "Your store description here.",
-        "show_button": true,
-        "button_label": "Shop now",
-        "button_link": "/collections/all"
-      }
     }
   },
   "order": [
@@ -105,7 +95,6 @@
     "product_desc_3",
     "product_reviews",
     "faq",
-    "related_products",
-    "hero"
+    "related_products"
   ]
 }
