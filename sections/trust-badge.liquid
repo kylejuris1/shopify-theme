@@ -1,0 +1,32 @@
+<section class="trust-badge">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="trust-badge__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="trust-badge__sub">{{ section.settings.subheading }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust badge",
+  "class": "section-trust-badge",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Over 11k+ Dry Happy Families"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": ""
+    }
+  ]
+}
+{% endschema %}

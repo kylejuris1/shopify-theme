@@ -1,0 +1,139 @@
+{% comment %} Product hero in Unikor style: gallery + form with bullets, price, CTA {% endcomment %}
+<section class="product-hero-unikor">
+  <div class="page-width">
+    <div class="product-hero-unikor__grid">
+      <div class="product-hero-unikor__media">
+        {% if product.featured_media %}
+          <img
+            class="product-hero-unikor__main-img"
+            src="{{ product.featured_media | image_url: width: 800 }}"
+            alt="{{ product.featured_media.alt | default: product.title }}"
+            width="800"
+            height="{{ 800 | divided_by: product.featured_media.aspect_ratio | round }}"
+            loading="eager"
+          >
+          {% if product.media.size > 1 %}
+            <div class="product-hero-unikor__thumbs">
+              {% for media in product.media limit: 5 %}
+                <button type="button" aria-label="View image {{ forloop.index }}">
+                  <img
+                    src="{{ media | image_url: width: 160 }}"
+                    data-full-size="{{ media | image_url: width: 800 }}"
+                    alt="{{ media.alt | default: product.title }}"
+                    width="80"
+                    height="80"
+                    loading="lazy"
+                  >
+                </button>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="product-hero-unikor__placeholder">{{ 'product.no_media' | t | default: 'No image' }}</div>
+        {% endif %}
+      </div>
+
+      <div class="product-hero-unikor__info">
+        <h1>{{ product.title }}</h1>
+
+        <div class="product-hero-unikor__price-wrap">
+          <span class="product-hero-unikor__price">{{ product.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class="product-hero-unikor__compare">{{ product.compare_at_price | money }}</span>
+            {% assign save_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+            <span class="product-hero-unikor__save">SAVE {{ save_percent }}%</span>
+          {% endif %}
+        </div>
+        {% unless product.available %}
+          <span class="product-hero-unikor__badge">{{ 'product.sold_out' | t | default: 'Sold out' }}</span>
+        {% endunless %}
+
+        {% if section.settings.bullet_1 != blank or section.settings.bullet_2 != blank or section.settings.bullet_3 != blank %}
+          <ul class="product-hero-unikor__bullets">
+            {% if section.settings.bullet_1 != blank %}<li>{{ section.settings.bullet_1 }}</li>{% endif %}
+            {% if section.settings.bullet_2 != blank %}<li>{{ section.settings.bullet_2 }}</li>{% endif %}
+            {% if section.settings.bullet_3 != blank %}<li>{{ section.settings.bullet_3 }}</li>{% endif %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.note != blank %}
+          <p class="product-hero-unikor__note">{{ section.settings.note }}</p>
+        {% endif %}
+
+        {% form 'product', product, id: 'product-form-unikor', class: 'product-form' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button
+            type="submit"
+            name="add"
+            class="btn btn--primary btn--block btn--large product-form__submit"
+            {% unless product.available %}disabled{% endunless %}
+          >
+            {% if product.available %}
+              {{ section.settings.button_text | default: 'Buy Now' }}
+            {% else %}
+              {{ 'product.sold_out' | t | default: 'Sold out' }}
+            {% endif %}
+          </button>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} Sticky bar for mobile (price + add to cart) {% endcomment %}
+<div class="product-sticky-bar" id="product-sticky-bar" aria-hidden="true">
+  <div class="product-sticky-bar__price">{{ product.price | money }}</div>
+  <a href="#product-form-unikor" class="btn btn--primary">Add to cart</a>
+</div>
+<script>
+  (function() {
+    var bar = document.getElementById('product-sticky-bar');
+    if (!bar) return;
+    var form = document.getElementById('product-form-unikor');
+    if (!form) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        bar.setAttribute('aria-hidden', e.isIntersecting ? 'true' : 'false');
+        bar.style.display = e.isIntersecting ? 'none' : 'flex';
+      });
+    }, { rootMargin: '-60px 0px 0px 0px', threshold: 0 });
+    observer.observe(form);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product hero (Unikor)",
+  "class": "section-product-hero-unikor",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Buy Now"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_1",
+      "label": "Bullet 1"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_2",
+      "label": "Bullet 2"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_3",
+      "label": "Bullet 3"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note below bullets",
+      "default": "Note: For Limited Time: Free Reward Chart & Stickers Included"
+    }
+  ]
+}
+{% endschema %}

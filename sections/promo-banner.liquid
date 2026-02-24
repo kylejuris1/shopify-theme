@@ -1,0 +1,26 @@
+{% if section.settings.enabled %}
+  <div class="promo-banner" role="region" aria-label="Promotion">
+    {{ section.settings.text }}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Promo banner",
+  "class": "section-promo-banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Show banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Banner text",
+      "default": "Save Up to 53% Off While Supplies Last"
+    }
+  ]
+}
+{% endschema %}

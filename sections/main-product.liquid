@@ -1,0 +1,30 @@
+{% comment %} Default main product section for standard product template {% endcomment %}
+<section class="product page-width" style="padding: 2rem 1.25rem;">
+  <div style="display: grid; gap: 2rem; max-width: 1200px; margin: 0 auto;">
+    {% if product.featured_media %}
+      <div>
+        <img src="{{ product.featured_media | image_url: width: 800 }}" alt="{{ product.title }}" width="800" loading="eager">
+      </div>
+    {% endif %}
+    <div>
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.price | money }}{% if product.compare_at_price > product.price %} <span style="text-decoration:line-through;">{{ product.compare_at_price | money }}</span>{% endif %}</p>
+      {% if product.description != blank %}<div>{{ product.description }}</div>{% endif %}
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="btn btn--primary" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}{{ 'product.add_to_cart' | t | default: 'Add to cart' }}{% else %}{{ 'product.sold_out' | t | default: 'Sold out' }}{% endif %}
+        </button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": []
+}
+{% endschema %}

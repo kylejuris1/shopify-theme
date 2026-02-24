@@ -1,0 +1,180 @@
+{
+  "sections": {
+    "promo_banner": {
+      "type": "promo-banner",
+      "settings": {
+        "enabled": true,
+        "text": "Save Up to 53% Off While Supplies Last"
+      }
+    },
+    "product_hero": {
+      "type": "product-hero-unikor",
+      "settings": {
+        "button_text": "Buy Now",
+        "bullet_1": "Teaches lasting brain-to-bladder connection for dryness.",
+        "bullet_2": "Boosts confidence and independence with every dry night.",
+        "bullet_3": "Quickly ends the never-ending frustration with bedwetting (enuresis).",
+        "note": "Note: For Limited Time: Free Reward Chart & Stickers Included"
+      }
+    },
+    "trust_badge": {
+      "type": "trust-badge",
+      "settings": {
+        "heading": "Over 11k+ Dry Happy Families",
+        "subheading": ""
+      }
+    },
+    "content_problem": {
+      "type": "rich-content",
+      "settings": {
+        "heading": "End Bedwetting For Good Before It Becomes An Everynight Occurrence",
+        "body": "<p>Is your child struggling with nighttime bedwetting despite all your efforts? Are you exhausted from endless laundry, disrupted sleep, and seeing your child's confidence diminish with each wet night?</p><p>Leaving this issue unresolved not only affects your child's self-esteem but they may also miss sleepovers and fun times because they're worried about accidents.</p><p>Introducing the NightGuard Bedwetting Alarm—a proven solution designed to help your child stay dry at night. Utilizing advanced moisture-sensing technology, the NightGuard detects the first drop of urine, gently waking up your child. This trains their brain to recognize bladder signals, leading to permanent dryness without medications.</p>",
+        "alt_bg": false,
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "content_peaceful": {
+      "type": "rich-content",
+      "settings": {
+        "heading": "Enjoy Peaceful Nights for Everyone",
+        "body": "<p>Imagine uninterrupted sleep without midnight bed changes or wake-up calls. The NightGuard Bedwetting Alarm not only aids your child but also restores tranquility to your household.</p><p>Its comfortable, compact design ensures your child sleeps soundly while the alarm stands guard, ready to assist only when needed.</p><p>Wake up rejuvenated, with mornings free from stress and extra chores.</p>",
+        "alt_bg": true,
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "content_guarantee": {
+      "type": "rich-content",
+      "settings": {
+        "heading": "End Bedwetting or Get Your Money Back",
+        "body": "<p>Try out the NightGuard™ Bedwetting Alarm for 60 days. If you don't see a noticeable improvement in your child's bedwetting, just let us know. We'll refund every penny, no questions asked!</p><p>Give the NightGuard™ a try risk free.</p>",
+        "alt_bg": false,
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "cta_block": {
+      "type": "cta-block",
+      "settings": {
+        "heading": "Ready to Help Your Child Stay Dry?",
+        "text": "Get the NightGuard Bedwetting Alarm Today!",
+        "button_label": "Get it now",
+        "button_link": ""
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the NightGuard™ work?",
+            "answer": "The alarm uses a sensitive moisture sensor clipped to your child's underwear. At the first sign of wetness, it triggers an alarm and gentle vibration to wake your child, helping them recognize the need to use the bathroom. Overtime their body will naturally recognize the urge to use the bathroom."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is there a guarantee?",
+            "answer": "Absolutely! We stand by the quality and effectiveness of our product with a 60-day satisfaction guarantee, so you can buy with confidence."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it easy to clean?",
+            "answer": "Definitely! Just wipe down the NightGuard™ with a disinfecting wipe when needed."
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "NightGuard's battery should last multiple nights and can easily be recharged with the provided USB-C charger."
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is the alarm safe and comfortable for my child to wear?",
+            "answer": "Absolutely! The NightGuard™ is designed with your child's comfort in mind. It's lightweight, compact, and has adjustable settings for sound and vibration to suit their preferences."
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How soon can we expect to see results?",
+            "answer": "Many users notice improvements within the first few weeks. Consistency is key, and with regular use, most children achieve dry nights permanently."
+          }
+        },
+        "faq_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it difficult to set up and use?",
+            "answer": "Not at all. The NightGuard™ comes with easy-to-follow instructions. Simply clip the sensor to the underwear and attach the alarm unit to the pajama top or arm band."
+          }
+        },
+        "faq_8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will this work for my big kid?",
+            "answer": "Absolutely! NightGuard is designed to work for children of various ages, including older kids who may still struggle with bedwetting. Sizing isn't an issue—the alarm features an adjustable arm band, and it even works with pull-ups if your child still uses them. Many parents find NightGuard especially helpful for deep sleepers and children who haven't responded to other methods."
+          }
+        },
+        "faq_9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will the alarm disturb others in the household?",
+            "answer": "NightGuard™ features adjustable volume settings and a vibration mode, allowing you to customize it to be discreet and minimize disturbance to others."
+          }
+        },
+        "faq_10": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it suitable for deep sleepers?",
+            "answer": "Yes! The combination of sound and vibration is effective in waking even deep sleepers, helping them develop the habit of waking up when they need to urinate."
+          }
+        },
+        "faq_11": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can it be used for older children or adults?",
+            "answer": "Yes, the NightGuard™ is suitable for people of all ages struggling with nighttime issues, including teens and adults."
+          }
+        },
+        "faq_12": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I best support my child?",
+            "answer": "To best support your child while using NightGuard™, consistency is key. Use the alarm every night to help reinforce the brain-to-bladder connection. For the first few nights, we recommend sleeping in the same room with your child to ensure they wake up when the alarm sounds and make it to the bathroom. Over time, they will naturally start waking up on their own. Tracking their progress with a reward chart—giving them stars for dry nights—can keep them motivated and boost their confidence."
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7", "faq_8", "faq_9", "faq_10", "faq_11", "faq_12"],
+      "settings": {
+        "eyebrow": "You got questions",
+        "heading": "We Got Answers!"
+      }
+    },
+    "related": {
+      "type": "related-products-unikor",
+      "settings": {
+        "heading": "Check Out Our Wireless Version:",
+        "collection": "",
+        "products_to_show": 4
+      }
+    }
+  },
+  "order": [
+    "promo_banner",
+    "product_hero",
+    "trust_badge",
+    "content_problem",
+    "content_peaceful",
+    "content_guarantee",
+    "cta_block",
+    "faq",
+    "related"
+  ]
+}

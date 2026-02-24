@@ -1,0 +1,32 @@
+<header class="header" role="banner">
+  <div class="header__inner page-width">
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="200" height="{{ 200 | divided_by: section.settings.logo.aspect_ratio | round }}">
+      {% else %}
+        <span class="header__logo-text">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+    <nav class="header__nav" aria-label="Main">
+      <a href="{{ routes.root_url }}">{{ 'header.home' | t | default: 'Home' }}</a>
+      <a href="{{ routes.collections_url }}">{{ 'header.collections' | t | default: 'Collections' }}</a>
+      <a href="{{ routes.cart_url }}" class="header__cart">
+        {{ 'header.cart' | t | default: 'Cart' }} ({{ cart.item_count }})
+      </a>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    }
+  ]
+}
+{% endschema %}

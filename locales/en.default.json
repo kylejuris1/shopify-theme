@@ -1,0 +1,27 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    }
+  },
+  "header": {
+    "home": "Home",
+    "collections": "Collections",
+    "cart": "Cart"
+  },
+  "footer": {
+    "all_rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "refund": "Refunds",
+    "terms": "Terms"
+  },
+  "product": {
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out",
+    "no_media": "No image"
+  }
+}

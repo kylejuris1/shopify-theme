@@ -1,0 +1,31 @@
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner page-width">
+    <div class="footer__grid">
+      <div class="footer__block">
+        <p class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.all_rights' | t | default: 'All rights reserved.' }}</p>
+      </div>
+      {% if section.settings.show_policy_links %}
+        <div class="footer__block footer__links">
+          {% if shop.policies.privacy_policy %}<a href="{{ shop.policies.privacy_policy.url }}">{{ 'footer.privacy' | t | default: 'Privacy' }}</a>{% endif %}
+          {% if shop.policies.refund_policy %}<a href="{{ shop.policies.refund_policy.url }}">{{ 'footer.refund' | t | default: 'Refunds' }}</a>{% endif %}
+          {% if shop.policies.terms_of_service %}<a href="{{ shop.policies.terms_of_service.url }}">{{ 'footer.terms' | t | default: 'Terms' }}</a>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_policy_links",
+      "label": "Show policy links",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

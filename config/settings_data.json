@@ -1,0 +1,12 @@
+{
+  "current": {
+    "color_primary": "#2563eb",
+    "color_secondary": "#1e40af",
+    "color_accent": "#22c55e",
+    "color_background": "#ffffff",
+    "color_text": "#1f2937",
+    "type_header_font": "assistant_n4",
+    "type_body_font": "assistant_n4",
+    "favicon": null
+  }
+}

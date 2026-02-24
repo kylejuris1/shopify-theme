@@ -1,0 +1,95 @@
+<section class="faq-accordion">
+  <div class="page-width">
+    <div class="faq-accordion__intro">
+      {% if section.settings.eyebrow != blank %}
+        <h3>{{ section.settings.eyebrow }}</h3>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+    <div class="faq-accordion__list">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq_item' %}
+          <div class="faq-accordion__item" {{ block.shopify_attributes }}>
+            <button type="button" class="faq-accordion__trigger" aria-expanded="false" aria-controls="faq-{{ section.id }}-{{ block.id }}" id="faq-trigger-{{ section.id }}-{{ block.id }}">
+              {{ block.settings.question }}
+            </button>
+            <div class="faq-accordion__panel" id="faq-{{ section.id }}-{{ block.id }}" role="region" aria-labelledby="faq-trigger-{{ section.id }}-{{ block.id }}">
+              <div class="faq-accordion__panel-inner">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    document.querySelectorAll('.faq-accordion__trigger').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-accordion__item');
+        var isOpen = item.classList.contains('is-open');
+        var panel = item.querySelector('.faq-accordion__panel');
+        document.querySelectorAll('.faq-accordion__item').forEach(function(i) {
+          i.classList.remove('is-open');
+          i.querySelector('.faq-accordion__trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+          this.setAttribute('aria-expanded', 'true');
+          if (panel) panel.style.maxHeight = panel.scrollHeight + 'px';
+        } else if (panel) {
+          panel.style.maxHeight = '0';
+        }
+      });
+    });
+    document.querySelectorAll('.faq-accordion__item').forEach(function(item) {
+      var panel = item.querySelector('.faq-accordion__panel');
+      if (panel) panel.style.maxHeight = '0';
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ accordion",
+  "class": "section-faq-accordion",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "You got questions"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We Got Answers!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

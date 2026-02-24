@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Welcome",
+        "subtext": "Your store description here.",
+        "show_button": true,
+        "button_label": "Shop now",
+        "button_link": "/collections/all"
+      }
+    }
+  },
+  "order": ["hero"]
+}
