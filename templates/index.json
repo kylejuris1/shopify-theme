@@ -1,5 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "featured_product": {
+      "type": "featured-product-unikor",
+      "settings": {
+        "product_heading": "NightGuard Bedwetting Alarm",
+        "review_count": "1555",
+        "price": "$44.00",
+        "compare_price": "$84.00",
+        "save_percent": "SAVE 47%",
+        "cta_link": "/collections/all"
+      }
+    },
     "hero": {
       "type": "hero-banner",
       "settings": {
@@ -11,5 +31,5 @@
       }
     }
   },
-  "order": ["hero"]
+  "order": ["featured_product", "hero"]
 }
