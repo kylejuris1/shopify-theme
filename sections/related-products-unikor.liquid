@@ -1,7 +1,7 @@
 {% assign collection = section.settings.collection | default: product.collections.first %}
 {% if collection == blank %}{% assign collection = collections.all %}{% endif %}
 {% assign related = collection.products | where: 'available', true %}
-{% assign related = related | where_exp: 'p', 'p.id != product.id' %}
+{% if product != blank %}{% assign related = related | where_exp: 'p', 'p.id != product.id' %}{% endif %}
 {% assign limit_count = section.settings.products_to_show | default: 4 %}
 {% assign related = related | limit: limit_count %}
 

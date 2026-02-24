@@ -1,15 +1,16 @@
-{% comment %} Exact Unikor product hero: left = gallery + badge + AS SEEN ON + thumbs; right = title, stars, price, bullets, testimonial, note, buy more, CTA, payments {% endcomment %}
+{% comment %} Featured product in Unikor style - works on homepage (no product object). Use product picker or show placeholder. {% endcomment %}
+{% assign featured = section.settings.product %}
 <section class="unikor-product-hero">
   <div class="page-width unikor-product-hero__container">
     <div class="unikor-product-hero__media">
       <div class="unikor-product-hero__main-wrap">
-        {% if product.featured_media %}
+        {% if featured != blank and featured.featured_media %}
           <img
             class="unikor-product-hero__main-img"
-            src="{{ product.featured_media | image_url: width: 800 }}"
-            alt="{{ product.featured_media.alt | default: product.title }}"
+            src="{{ featured.featured_media | image_url: width: 800 }}"
+            alt="{{ featured.featured_media.alt | default: featured.title }}"
             width="800"
-            height="{{ 800 | divided_by: product.featured_media.aspect_ratio | round }}"
+            height="{{ 800 | divided_by: featured.featured_media.aspect_ratio | round }}"
             loading="eager"
           >
         {% else %}
@@ -40,8 +41,8 @@
       <div class="unikor-product-hero__thumbs-wrap">
         <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--prev" aria-label="Previous">‹</button>
         <div class="unikor-product-hero__thumbs">
-          {% if product.media.size > 0 %}
-            {% for media in product.media limit: 5 %}
+          {% if featured != blank and featured.media.size > 0 %}
+            {% for media in featured.media limit: 5 %}
               <button type="button" class="unikor-product-hero__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ media | image_url: width: 800 }}" aria-label="Image {{ forloop.index }}">
                 <img src="{{ media | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
               </button>
@@ -55,24 +56,25 @@
     </div>
 
     <div class="unikor-product-hero__info">
-      <h1 class="unikor-product-hero__title">{{ section.settings.product_heading | default: product.title }}</h1>
+      <h1 class="unikor-product-hero__title">{% if section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured != blank %}{{ featured.title }}{% else %}NightGuard Bedwetting Alarm{% endif %}</h1>
       <div class="unikor-product-hero__reviews">
         <span class="unikor-product-hero__stars">★★★★★</span>
-        <span class="unikor-product-hero__review-count">{{ section.settings.review_count | default: '1555' }} reviews</span>
+        <span class="unikor-product-hero__review-count">{{ section.settings.review_count }} reviews</span>
       </div>
       <div class="unikor-product-hero__price-row">
-        {% if product.compare_at_price > product.price %}
-          <span class="unikor-product-hero__compare-price">{{ product.compare_at_price | money }}</span>
+        {% if featured != blank and featured.compare_at_price > featured.price %}
+          <span class="unikor-product-hero__compare-price">{{ featured.compare_at_price | money }}</span>
+        {% elsif section.settings.compare_price != blank %}
+          <span class="unikor-product-hero__compare-price">{{ section.settings.compare_price }}</span>
         {% endif %}
-        <span class="unikor-product-hero__price">{{ product.price | money }}</span>
-        {% if product.compare_at_price > product.price %}
-          {% assign save_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <span class="unikor-product-hero__price">{% if featured != blank %}{{ featured.price | money }}{% else %}{{ section.settings.price | default: '$44.00' }}{% endif %}</span>
+        {% if featured != blank and featured.compare_at_price > featured.price %}
+          {% assign save_pct = featured.compare_at_price | minus: featured.price | times: 100 | divided_by: featured.compare_at_price %}
           <span class="unikor-product-hero__save-pill">SAVE {{ save_pct }}%</span>
+        {% elsif section.settings.save_percent != blank %}
+          <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
         {% endif %}
       </div>
-      {% unless product.available %}
-        <span class="unikor-product-hero__sold-out">Sold out</span>
-      {% endunless %}
 
       <ul class="unikor-product-hero__bullets">
         <li>Soft, lightweight sensor kids barely notice.</li>
@@ -102,64 +104,51 @@
           <label class="unikor-product-hero__option">
             <input type="radio" name="quantity_tier" value="1" checked>
             <span class="unikor-product-hero__option-label">Buy 1 and save</span>
-            <span class="unikor-product-hero__option-price">{{ product.price | money }}</span>
-            <span class="unikor-product-hero__option-compare">{{ product.compare_at_price | default: product.price | money }}</span>
+            <span class="unikor-product-hero__option-price">{% if featured != blank %}{{ featured.price | money }}{% else %}$44.00{% endif %}</span>
+            <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
           </label>
           <label class="unikor-product-hero__option unikor-product-hero__option--popular">
             <input type="radio" name="quantity_tier" value="2">
             <span class="unikor-product-hero__option-label">Buy 2 and save 12%</span>
-            <span class="unikor-product-hero__option-price">{% if product.compare_at_price %}{{ product.price | times: 0.88 | round | money }}{% else %}{{ product.price | money }}{% endif %}</span>
-            <span class="unikor-product-hero__option-compare">{{ product.compare_at_price | default: product.price | money }}</span>
+            <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.88 | round | money }}{% else %}$39.00{% endif %}</span>
+            <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
             <span class="unikor-product-hero__option-badge">Most Popular</span>
           </label>
           <label class="unikor-product-hero__option">
             <input type="radio" name="quantity_tier" value="3">
             <span class="unikor-product-hero__option-label">Buy 3+ and save 20%</span>
-            <span class="unikor-product-hero__option-price">{% if product.compare_at_price %}{{ product.price | times: 0.8 | round | money }}{% else %}{{ product.price | money }}{% endif %}</span>
-            <span class="unikor-product-hero__option-compare">{{ product.compare_at_price | default: product.price | money }}</span>
+            <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.8 | round | money }}{% else %}$35.00{% endif %}</span>
+            <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
           </label>
         </div>
       </div>
 
       <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
 
-      {% form 'product', product, id: 'product-form-unikor', class: 'unikor-product-hero__form' %}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless product.available %}disabled{% endunless %}>
-          BUY NOW
-        </button>
-      {% endform %}
+      {% if featured != blank %}
+        {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
+          <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
+          <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured.available %}disabled{% endunless %}>BUY NOW</button>
+        {% endform %}
+      {% else %}
+        <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
+      {% endif %}
 
       <div class="unikor-product-hero__payments">
-        <span class="unikor-product-hero__payments-label">Payment methods placeholder</span>
+        <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="unikor-sticky-bar" id="unikor-sticky-bar" aria-hidden="true">
-  <span class="unikor-sticky-bar__text">Choose options</span>
-  <a href="#product-form-unikor" class="unikor-sticky-bar__btn">BUY NOW</a>
-</div>
 <script>
-  (function(){
-    var bar = document.getElementById('unikor-sticky-bar');
-    var form = document.getElementById('product-form-unikor');
-    if (!bar || !form) return;
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        bar.setAttribute('aria-hidden', e.isIntersecting ? 'true' : 'false');
-        bar.style.display = e.isIntersecting ? 'none' : 'flex';
-      });
-    }, { rootMargin: '-80px 0 0 0', threshold: 0 });
-    obs.observe(form);
-  })();
   document.querySelectorAll('.unikor-product-hero__thumb').forEach(function(btn){
+    var main = btn.closest('.unikor-product-hero') && btn.closest('.unikor-product-hero').querySelector('.unikor-product-hero__main-img');
+    if (!main) return;
     btn.addEventListener('click', function(){
-      var main = document.querySelector('.unikor-product-hero__main-img');
       var full = this.getAttribute('data-full');
-      if (main && full) main.src = full;
-      document.querySelectorAll('.unikor-product-hero__thumb').forEach(function(b){ b.classList.remove('is-active'); });
+      if (full) main.src = full;
+      btn.closest('.unikor-product-hero__thumbs').querySelectorAll('.unikor-product-hero__thumb').forEach(function(b){ b.classList.remove('is-active'); });
       this.classList.add('is-active');
     });
   });
@@ -167,12 +156,17 @@
 
 {% schema %}
 {
-  "name": "Product hero (Unikor)",
-  "class": "section-product-hero-unikor",
+  "name": "Featured product (Unikor)",
+  "class": "section-featured-product-unikor",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "product_heading", "label": "Product name (heading)", "default": "NightGuard Bedwetting Alarm" },
+    { "type": "product", "id": "product", "label": "Product (leave blank for placeholder only)" },
+    { "type": "text", "id": "product_heading", "label": "Product name", "default": "NightGuard Bedwetting Alarm" },
     { "type": "text", "id": "review_count", "label": "Review count", "default": "1555" },
+    { "type": "text", "id": "price", "label": "Price (when no product)", "default": "$44.00" },
+    { "type": "text", "id": "compare_price", "label": "Compare at price (when no product)", "default": "$84.00" },
+    { "type": "text", "id": "save_percent", "label": "Save badge (when no product)", "default": "SAVE 47%" },
+    { "type": "url", "id": "cta_link", "label": "BUY NOW link (when no product)", "default": "/collections/all" },
     { "type": "image_picker", "id": "testimonial_image", "label": "Testimonial avatar" },
     { "type": "image_picker", "id": "as_seen_logo_1", "label": "As seen on logo 1" },
     { "type": "image_picker", "id": "as_seen_logo_2", "label": "As seen on logo 2" },

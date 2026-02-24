@@ -2,7 +2,10 @@
   "sections": {
     "product_hero": {
       "type": "product-hero-unikor",
-      "settings": { "review_count": "1555" }
+      "settings": {
+        "product_heading": "NightGuard Bedwetting Alarm",
+        "review_count": "1555"
+      }
     },
     "trust_badge": {
       "type": "trust-badge",

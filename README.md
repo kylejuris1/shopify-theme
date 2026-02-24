@@ -45,16 +45,25 @@ locales/
 
 1. Push this project to your repo:  
    `https://github.com/kylejuris1/shopify-theme`
-2. In **Shopify Admin**: Online Store → Themes → Add theme → **Connect from GitHub**.
-3. Select the repo and branch, then **Connect**.
+2. In **Shopify Admin**: **Online Store → Themes** → **Add theme** → **Connect from GitHub**.
+3. Select the repo and branch (e.g. `master`), then **Connect**.
 
-### 2. Assign the Unikor template to a product
+### 2. Use this theme (required – or you’ll see an empty product area)
+
+**You must be viewing this theme, not the default Shopify theme.**
+
+- This theme has **no** “Product Collections” sidebar. If you see “Product Collections” or “Home page products” on the left, you’re on a different theme (e.g. Dawn).
+- In **Online Store → Themes**, find the theme that was added from GitHub (e.g. “Custom Unikor Style” or “shopify-theme”).
+- Click **Customize** to preview it, or **Publish** to make it your live theme.
+- After that, the homepage will show the NightGuard product section at the top, and product pages can use the Unikor template.
+
+### 3. Assign the Unikor template to a product
 
 1. In Admin: **Products** → open the product (e.g. your bedwetting alarm).
 2. In the **Theme template** dropdown, choose **Unikor** (or the label you see for `product.unikor`).
 3. Save. The product page will use the Unikor layout and sections.
 
-### 3. Customize content
+### 4. Customize content
 
 - Go to **Online Store → Themes → Customize**.
 - Open a product that uses the Unikor template.

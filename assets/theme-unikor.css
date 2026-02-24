@@ -159,6 +159,8 @@
 .unikor-reviews__card-flag { font-size: 0.9rem; }
 .unikor-reviews__card-stars { color: #f59e0b; font-size: 0.85rem; margin-left: auto; }
 .unikor-reviews__card-text { font-size: 0.9rem; color: #374151; line-height: 1.5; margin: 0; }
+.unikor-reviews__load-wrap { text-align: center; margin-top: 2rem; }
+.unikor-reviews__load-more { padding: 0.75rem 1.5rem; }
 
 /* ---- FAQ: dark pills, ? icon, chevron ---- */
 .unikor-faq { padding: 3rem 1rem; background: #fff; }
