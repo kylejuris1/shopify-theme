@@ -1,0 +1,16 @@
+{% if section.settings.enabled %}
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="announcement-bar__inner">{{ section.settings.text }}</div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "class": "section-announcement-bar",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show bar", "default": true },
+    { "type": "text", "id": "text", "label": "Text", "default": "Save Up to 53% Off While Supplies Last" }
+  ]
+}
+{% endschema %}

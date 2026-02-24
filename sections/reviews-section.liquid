@@ -1,0 +1,79 @@
+<section class="unikor-reviews">
+  <div class="page-width">
+    <div class="unikor-reviews__summary">
+      <div class="unikor-reviews__score-box">
+        <span class="unikor-reviews__score">4.7</span>
+        <span class="unikor-reviews__out-of">out of 5</span>
+      </div>
+      <div class="unikor-reviews__meta">
+        <p class="unikor-reviews__based">Based on {{ section.settings.review_count | default: '1555' }} reviews</p>
+        <div class="unikor-reviews__bars">
+          <div class="unikor-reviews__bar-row"><span>5</span><div class="unikor-reviews__bar"><div class="unikor-reviews__bar-fill" style="width: 75%;"></div></div><span class="unikor-reviews__bar-count">(1166)</span></div>
+          <div class="unikor-reviews__bar-row"><span>4</span><div class="unikor-reviews__bar"><div class="unikor-reviews__bar-fill" style="width: 21%;"></div></div><span class="unikor-reviews__bar-count">(321)</span></div>
+          <div class="unikor-reviews__bar-row"><span>3</span><div class="unikor-reviews__bar"><div class="unikor-reviews__bar-fill" style="width: 4%;"></div></div><span class="unikor-reviews__bar-count">(68)</span></div>
+          <div class="unikor-reviews__bar-row"><span>2</span><div class="unikor-reviews__bar"><div class="unikor-reviews__bar-fill" style="width: 0%;"></div></div><span class="unikor-reviews__bar-count">(0)</span></div>
+          <div class="unikor-reviews__bar-row"><span>1</span><div class="unikor-reviews__bar"><div class="unikor-reviews__bar-fill" style="width: 0%;"></div></div><span class="unikor-reviews__bar-count">(0)</span></div>
+        </div>
+        <button type="button" class="unikor-btn unikor-btn--black unikor-reviews__write">Write a review</button>
+        <a href="#" class="unikor-reviews__sort">Sort reviews ↕</a>
+      </div>
+    </div>
+    <div class="unikor-reviews__cards">
+      <div class="unikor-reviews__card">
+        <div class="unikor-reviews__card-head">
+          <div class="unikor-reviews__card-avatar">A</div>
+          <div>
+            <span class="unikor-reviews__card-name">Adina</span>
+            <span class="unikor-reviews__card-flag" aria-hidden="true">🇺🇸</span>
+          </div>
+          <span class="unikor-reviews__card-stars">★★★★★</span>
+        </div>
+        <p class="unikor-reviews__card-text">The best purchase I made this year "NightGuard".</p>
+      </div>
+      <div class="unikor-reviews__card">
+        <div class="unikor-reviews__card-head">
+          <div class="unikor-reviews__card-avatar">S</div>
+          <div>
+            <span class="unikor-reviews__card-name">Stephanie Geraci</span>
+            <span class="unikor-reviews__card-flag">🇺🇸</span>
+          </div>
+          <span class="unikor-reviews__card-stars">★★★★★</span>
+        </div>
+        <p class="unikor-reviews__card-text">I was having trouble helping my 6 year old stay dry in the night. Bedtime incontinence episodes were nightly and often soaking through the bed to the mattress. It took about a month after starting this device, but I think it would have been much harder and more distressing for her without it!</p>
+      </div>
+      <div class="unikor-reviews__card">
+        <div class="unikor-reviews__card-head">
+          <div class="unikor-reviews__card-avatar">T</div>
+          <div>
+            <span class="unikor-reviews__card-name">Travis</span>
+            <span class="unikor-reviews__card-flag">🇨🇦</span>
+          </div>
+          <span class="unikor-reviews__card-stars">★★★★★</span>
+        </div>
+        <p class="unikor-reviews__card-text">I never write reviews, but I'm so thrilled by the amazing results we've had with this alarm that I had to share. I was very skeptical but desperate enough to try this for my almost 10 year old who was still bedwetting every night. After the first week of using the alarm, he started waking up dry every night!!</p>
+      </div>
+      <div class="unikor-reviews__card">
+        <div class="unikor-reviews__card-head">
+          <div class="unikor-reviews__card-avatar">E</div>
+          <div>
+            <span class="unikor-reviews__card-name">Em</span>
+            <span class="unikor-reviews__card-flag">🇺🇸</span>
+          </div>
+          <span class="unikor-reviews__card-stars">★★★★★</span>
+        </div>
+        <p class="unikor-reviews__card-text">Wish I would have known about this years ago! My 10 year old was still waking up with soaking wet pull ups every single morning. This started to work for him after just a few nights! Seriously can't recommend enough.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews (Unikor)",
+  "class": "section-reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "review_count", "label": "Review count", "default": "1555" }
+  ]
+}
+{% endschema %}
