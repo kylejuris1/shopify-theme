@@ -7,6 +7,12 @@
 {% if media_block != blank or description_block != blank or prices_bundle_block != blank %}
   {% assign use_blocks = true %}
 {% endif %}
+{% comment %} Product for media block: block picker overrides section product {% endcomment %}
+{% if media_block != blank and media_block.settings.product != blank %}
+  {% assign featured_media_product = media_block.settings.product %}
+{% else %}
+  {% assign featured_media_product = featured %}
+{% endif %}
 
 <section class="unikor-product-hero">
   <div class="page-width unikor-product-hero__container">
@@ -15,13 +21,13 @@
       {% if media_block != blank %}
         <div class="unikor-product-hero__media" {{ media_block.shopify_attributes }}>
           <div class="unikor-product-hero__main-wrap">
-            {% if featured != blank and featured.featured_media %}
+            {% if featured_media_product != blank and featured_media_product.featured_media %}
               <img
                 class="unikor-product-hero__main-img"
-                src="{{ featured.featured_media | image_url: width: 800 }}"
-                alt="{{ featured.featured_media.alt | default: featured.title }}"
+                src="{{ featured_media_product.featured_media | image_url: width: 800 }}"
+                alt="{{ featured_media_product.featured_media.alt | default: featured_media_product.title }}"
                 width="800"
-                height="{{ 800 | divided_by: featured.featured_media.aspect_ratio | round }}"
+                height="{{ 800 | divided_by: featured_media_product.featured_media.aspect_ratio | round }}"
                 loading="eager"
               >
             {% else %}
@@ -52,8 +58,8 @@
           <div class="unikor-product-hero__thumbs-wrap">
             <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--prev" aria-label="Previous">‹</button>
             <div class="unikor-product-hero__thumbs">
-              {% if featured != blank and featured.media.size > 0 %}
-                {% for media in featured.media limit: 5 %}
+              {% if featured_media_product != blank and featured_media_product.media.size > 0 %}
+                {% for media in featured_media_product.media limit: 5 %}
                   <button type="button" class="unikor-product-hero__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ media | image_url: width: 800 }}" aria-label="Image {{ forloop.index }}">
                     <img src="{{ media | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
                   </button>
@@ -70,15 +76,15 @@
       <div class="unikor-product-hero__right">
         {% if description_block != blank %}
           <div class="unikor-product-hero__description" {{ description_block.shopify_attributes }}>
-            <h1 class="unikor-product-hero__title">{% if section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured != blank %}{{ featured.title }}{% else %}NightGuard Bedwetting Alarm{% endif %}</h1>
+            <h1 class="unikor-product-hero__title">{% if description_block.settings.heading != blank %}{{ description_block.settings.heading }}{% elsif section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured != blank %}{{ featured.title }}{% else %}NightGuard Bedwetting Alarm{% endif %}</h1>
             <div class="unikor-product-hero__reviews">
               <span class="unikor-product-hero__stars">★★★★★</span>
               <span class="unikor-product-hero__review-count">{{ section.settings.review_count }} reviews</span>
             </div>
             <ul class="unikor-product-hero__bullets">
-              <li>Soft, lightweight sensor kids barely notice.</li>
-              <li>Wakes your child at the first drop - not the whole house</li>
-              <li>Proven method that trains lasting dry nights - or your money back</li>
+              <li>{% if description_block.settings.bullet_1 != blank %}{{ description_block.settings.bullet_1 }}{% else %}Soft, lightweight sensor kids barely notice.{% endif %}</li>
+              <li>{% if description_block.settings.bullet_2 != blank %}{{ description_block.settings.bullet_2 }}{% else %}Wakes your child at the first drop - not the whole house{% endif %}</li>
+              <li>{% if description_block.settings.bullet_3 != blank %}{{ description_block.settings.bullet_3 }}{% else %}Proven method that trains lasting dry nights - or your money back{% endif %}</li>
             </ul>
             <div class="unikor-product-hero__testimonial">
               {% if section.settings.testimonial_image != blank %}
@@ -87,12 +93,12 @@
                 <div class="unikor-product-hero__testimonial-avatar-placeholder">AM</div>
               {% endif %}
               <div>
-                <p class="unikor-product-hero__testimonial-quote">"I thought my kid would never stop wetting the bed."</p>
-                <p class="unikor-product-hero__testimonial-name">Amy M. ★★★★★</p>
+                <p class="unikor-product-hero__testimonial-quote">{% if description_block.settings.testimonial_quote != blank %}"{{ description_block.settings.testimonial_quote }}"{% else %}"I thought my kid would never stop wetting the bed."{% endif %}</p>
+                <p class="unikor-product-hero__testimonial-name">{% if description_block.settings.testimonial_name != blank %}{{ description_block.settings.testimonial_name }}{% else %}Amy M. ★★★★★{% endif %}</p>
               </div>
             </div>
             <p class="unikor-product-hero__note">
-              <span class="unikor-product-hero__note-dot"></span> Note: For Limited Time: Free Reward Chart & Stickers Included
+              <span class="unikor-product-hero__note-dot"></span> {% if description_block.settings.note_text != blank %}{{ description_block.settings.note_text }}{% else %}Note: For Limited Time: Free Reward Chart & Stickers Included{% endif %}
             </p>
           </div>
         {% endif %}
@@ -304,13 +310,23 @@
       "type": "media",
       "name": "Product images",
       "limit": 1,
-      "settings": []
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product", "info": "Overrides the section product above for this block’s images and thumbnails." }
+      ]
     },
     {
       "type": "description",
       "name": "Description",
       "limit": 1,
-      "settings": []
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Title", "info": "Overrides product name / section heading." },
+        { "type": "text", "id": "bullet_1", "label": "Bullet 1" },
+        { "type": "text", "id": "bullet_2", "label": "Bullet 2" },
+        { "type": "text", "id": "bullet_3", "label": "Bullet 3" },
+        { "type": "text", "id": "testimonial_quote", "label": "Testimonial quote" },
+        { "type": "text", "id": "testimonial_name", "label": "Testimonial name" },
+        { "type": "text", "id": "note_text", "label": "Note text", "default": "Note: For Limited Time: Free Reward Chart & Stickers Included" }
+      ]
     },
     {
       "type": "fast_bundle",
