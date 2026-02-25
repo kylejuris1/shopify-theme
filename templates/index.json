@@ -64,9 +64,7 @@
       "settings": {
         "heading": "En finir avec le pipi au lit ou remboursé",
         "body": "<p>Testez le NightGuard™ Bedwetting Alarm pendant 60 jours. Si vous ne constatez pas d'amélioration nette pour votre enfant, contactez-nous. Nous vous remboursons intégralement, sans discussion !</p>",
-        "video_image_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/D3.jpg",
-        "button_label": "Commander",
-        "button_link": "/collections/all"
+        "video_image_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/D3.jpg"
       }
     },
     "product_reviews": {
@@ -105,10 +103,10 @@
   "order": [
     "featured_product",
     "video_testimonials",
+    "product_reviews",
     "product_desc_1",
     "product_desc_2",
     "product_desc_3",
-    "product_reviews",
     "faq",
     "related_products"
   ]
