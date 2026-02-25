@@ -55,28 +55,15 @@
     "video_testimonials": {
       "type": "trust-badge",
       "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {
-            "video_url": ""
-          }
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {
-            "video_url": ""
-          }
-        },
         "video_3": {
           "type": "video",
           "settings": {
-            "video_url": ""
+            "video_thumbnail": "shopify://shop_images/tm.png",
+            "video_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/Shopify/test1_720p.mp4"
           }
         }
       },
       "block_order": [
-        "video_1",
-        "video_2",
         "video_3"
       ],
       "settings": {
@@ -247,6 +234,17 @@
     },
     "related_products": {
       "type": "related-products-unikor",
+      "blocks": {
+        "product_zjxeCT": {
+          "type": "product",
+          "settings": {
+            "product": "bedwetting-wireless-alarm"
+          }
+        }
+      },
+      "block_order": [
+        "product_zjxeCT"
+      ],
       "settings": {
         "heading": "Découvrez notre version sans fil :",
         "products_to_show": 4
