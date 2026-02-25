@@ -89,7 +89,6 @@
     },
     "product_reviews": {
       "type": "reviews-section",
-      "disabled": true,
       "settings": {
         "heading": ""
       }
