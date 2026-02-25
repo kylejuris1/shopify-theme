@@ -103,7 +103,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 /* ---- Trust: video cards ---- */
 .unikor-trust { padding: 3rem 1rem; background: #fff; text-align: center; }
 .unikor-trust__heading { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0 0 2rem; }
-.unikor-trust__videos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto 1.5rem; }
+.unikor-trust__videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto 1.5rem; }
 @media (max-width: 768px) { .unikor-trust__videos { grid-template-columns: 1fr; } }
 .unikor-trust__video-card { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); aspect-ratio: 16/10; background: #f3f4f6; }
 .unikor-trust__video-card img { width: 100%; height: 100%; object-fit: cover; }
@@ -151,6 +151,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 
 /* ---- Reviews ---- */
 .unikor-reviews { padding: 3rem 1rem; background: #fff; }
+.unikor-reviews__heading { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0 0 1.5rem; }
+.unikor-reviews__no-product { font-size: 0.95rem; color: #6b7280; margin: 0; }
 .unikor-reviews__summary { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; margin-bottom: 2rem; max-width: 1000px; margin-left: auto; margin-right: auto; }
 .unikor-reviews__score-box { background: #000; color: #fff; padding: 1rem 1.5rem; text-align: center; }
 .unikor-reviews__score { display: block; font-size: 2rem; font-weight: 700; line-height: 1.2; }

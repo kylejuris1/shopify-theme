@@ -3,8 +3,9 @@
 {% assign media_block = section.blocks | where: 'type', 'media' | first %}
 {% assign description_block = section.blocks | where: 'type', 'description' | first %}
 {% assign prices_block = section.blocks | where: 'type', 'prices' | first %}
+{% assign fast_bundle_block = section.blocks | where: 'type', 'fast_bundle' | first %}
 {% assign use_blocks = false %}
-{% if media_block != blank or description_block != blank or prices_block != blank %}
+{% if media_block != blank or description_block != blank or prices_block != blank or fast_bundle_block != blank %}
   {% assign use_blocks = true %}
 {% endif %}
 
@@ -149,7 +150,11 @@
             <div class="unikor-product-hero__payments">
               <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
             </div>
-            <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="52de5856-5af3-49dd-a037-9b19978bbb15"></div>
+          </div>
+        {% endif %}
+        {% if fast_bundle_block != blank and fast_bundle_block.settings.bundle_id != blank %}
+          <div class="unikor-product-hero__fast-bundle" {{ fast_bundle_block.shopify_attributes }}>
+            <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="{{ fast_bundle_block.settings.bundle_id }}"></div>
           </div>
         {% endif %}
       </div>
@@ -283,7 +288,6 @@
         <div class="unikor-product-hero__payments">
           <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
         </div>
-        <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="52de5856-5af3-49dd-a037-9b19978bbb15"></div>
       </div>
     {% endif %}
   </div>
@@ -304,7 +308,7 @@
 
 {% schema %}
 {
-  "name": "Featured product (Harba)",
+  "name": "Featured product",
   "class": "section-featured-product-unikor",
   "tag": "section",
   "settings": [
@@ -338,16 +342,25 @@
       "name": "Prices & CTA",
       "limit": 1,
       "settings": []
+    },
+    {
+      "type": "fast_bundle",
+      "name": "Fast Bundle",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "bundle_id", "label": "Bundle ID", "default": "52de5856-5af3-49dd-a037-9b19978bbb15", "info": "From Fast Bundle app: Place Bundles Anywhere → copy the bundle-ids value." }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Featured product (Harba)",
+      "name": "Featured product",
       "settings": {},
       "blocks": [
         { "type": "media" },
         { "type": "description" },
-        { "type": "prices" }
+        { "type": "prices" },
+        { "type": "fast_bundle", "settings": { "bundle_id": "52de5856-5af3-49dd-a037-9b19978bbb15" } }
       ]
     }
   ]
