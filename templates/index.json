@@ -83,8 +83,26 @@
         "heading": "Plus de 11 000 familles satisfaites"
       }
     },
+    "17719991564346c909": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_homepage_LJrKEh": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": "",
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_homepage_LJrKEh"
+      ],
+      "settings": {}
+    },
     "product_reviews": {
       "type": "reviews-section",
+      "disabled": true,
       "settings": {
         "heading": ""
       }
@@ -238,6 +256,7 @@
   "order": [
     "featured_product",
     "video_testimonials",
+    "17719991564346c909",
     "product_reviews",
     "product_desc_1",
     "product_desc_2",
