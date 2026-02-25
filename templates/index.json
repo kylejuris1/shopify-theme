@@ -219,6 +219,17 @@
     },
     "related_products": {
       "type": "related-products-unikor",
+      "blocks": {
+        "product_8Tt7Hx": {
+          "type": "product",
+          "settings": {
+            "product": "bedwetting-wireless-alarm"
+          }
+        }
+      },
+      "block_order": [
+        "product_8Tt7Hx"
+      ],
       "settings": {
         "heading": "Découvrez notre version sans fil :",
         "products_to_show": 4
