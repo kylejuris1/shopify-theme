@@ -119,9 +119,10 @@
                 <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
               {% endif %}
             </div>
-            {% if prices_bundle_block.settings.bundle_id != blank %}
+            {% assign bundle_id = prices_bundle_block.settings.bundle_id | default: '52de5856-5af3-49dd-a037-9b19978bbb15' %}
+            {% if bundle_id != blank %}
               <div class="unikor-product-hero__fast-bundle">
-                <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="{{ prices_bundle_block.settings.bundle_id }}"></div>
+                <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="{{ bundle_id }}"></div>
               </div>
             {% endif %}
             <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
