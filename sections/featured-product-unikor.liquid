@@ -3,7 +3,10 @@
 {% assign media_block = section.blocks | where: 'type', 'media' | first %}
 {% assign description_block = section.blocks | where: 'type', 'description' | first %}
 {% assign prices_block = section.blocks | where: 'type', 'prices' | first %}
-{% assign use_blocks = media_block != blank or description_block != blank or prices_block != blank %}
+{% assign use_blocks = false %}
+{% if media_block != blank or description_block != blank or prices_block != blank %}
+  {% assign use_blocks = true %}
+{% endif %}
 
 <section class="unikor-product-hero">
   <div class="page-width unikor-product-hero__container">
