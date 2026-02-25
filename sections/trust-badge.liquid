@@ -6,21 +6,48 @@
     <div class="unikor-trust__videos">
       {% for block in section.blocks %}
         {% if block.type == 'video' %}
-          <div class="unikor-trust__video-card" {{ block.shopify_attributes }}>
-            {% if block.settings.video_thumbnail != blank %}
-              <img src="{{ block.settings.video_thumbnail | image_url: width: 400 }}" alt="" width="400" height="250" loading="lazy">
+          {% assign has_video = false %}
+          {% assign video_src = '' %}
+          {% assign video_kind = 'external' %}
+          {% if block.settings.video != blank and block.settings.video.sources.size > 0 %}
+            {% assign has_video = true %}
+            {% assign video_src = block.settings.video.sources[0].url %}
+            {% assign video_kind = 'shopify' %}
+          {% elsif block.settings.video_url != blank %}
+            {% assign has_video = true %}
+            {% assign video_src = block.settings.video_url %}
+            {% if block.settings.video_url contains 'youtube.com' or block.settings.video_url contains 'youtu.be' %}
+              {% assign video_kind = 'youtube' %}
+            {% elsif block.settings.video_url contains 'vimeo.com' %}
+              {% assign video_kind = 'vimeo' %}
             {% else %}
-              <div class="unikor-trust__video-placeholder"><span>Vidéo {{ forloop.index }}</span></div>
+              {% assign video_kind = 'direct' %}
             {% endif %}
-            {% if block.settings.video_url != blank %}
-              <a href="{{ block.settings.video_url }}" target="_blank" rel="noopener" class="unikor-trust__play" aria-label="Lire la vidéo">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg>
-              </a>
-            {% else %}
-              <button type="button" class="unikor-trust__play" aria-label="Lire la vidéo" disabled>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg>
-              </button>
-            {% endif %}
+          {% endif %}
+          <div class="unikor-trust__video-card" {{ block.shopify_attributes }}
+            {% if has_video %} data-video-src="{{ video_src | escape }}" data-video-kind="{{ video_kind }}"{% endif %}>
+            <div class="unikor-trust__video-poster">
+              {% if block.settings.video_thumbnail != blank %}
+                <img src="{{ block.settings.video_thumbnail | image_url: width: 400 }}" alt="" width="400" loading="lazy">
+              {% elsif block.settings.video != blank and block.settings.video.preview_image %}
+                <img src="{{ block.settings.video.preview_image | image_url: width: 400 }}" alt="" width="400" loading="lazy">
+              {% else %}
+                <div class="unikor-trust__video-placeholder"><span>Vidéo {{ forloop.index }}</span></div>
+              {% endif %}
+              {% if has_video %}
+                <button type="button" class="unikor-trust__play unikor-trust__play--inline" aria-label="Lire la vidéo">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg>
+                </button>
+              {% else %}
+                <button type="button" class="unikor-trust__play" aria-label="Lire la vidéo" disabled>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg>
+                </button>
+              {% endif %}
+            </div>
+            <div class="unikor-trust__video-player" aria-hidden="true">
+              <button type="button" class="unikor-trust__video-close" aria-label="Fermer">&times;</button>
+              <div class="unikor-trust__video-embed"></div>
+            </div>
           </div>
         {% endif %}
       {% endfor %}
@@ -33,6 +60,48 @@
     <div class="unikor-trust__dot" aria-hidden="true"></div>
   </div>
 </section>
+<script>
+(function() {
+  function playInline(card, src, kind) {
+    var embed = card.querySelector('.unikor-trust__video-embed');
+    var playerWrap = card.querySelector('.unikor-trust__video-player');
+    if (!embed || !playerWrap) return;
+    embed.innerHTML = '';
+    if (kind === 'youtube') {
+      var id = (src.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\?]+)/) || [])[1] || src.split('/').pop();
+      embed.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } else if (kind === 'vimeo') {
+      var id = (src.match(/vimeo\.com\/(?:video\/)?(\d+)/) || [])[1] || src.split('/').pop();
+      embed.innerHTML = '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+      embed.innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>';
+    }
+    playerWrap.setAttribute('aria-hidden', 'false');
+    card.classList.add('is-playing');
+  }
+  function stopInline(card) {
+    var embed = card.querySelector('.unikor-trust__video-embed');
+    var playerWrap = card.querySelector('.unikor-trust__video-player');
+    if (embed) embed.innerHTML = '';
+    if (playerWrap) playerWrap.setAttribute('aria-hidden', 'true');
+    card.classList.remove('is-playing');
+  }
+  document.querySelectorAll('.unikor-trust__play--inline').forEach(function(btn) {
+    var card = btn.closest('.unikor-trust__video-card');
+    if (!card) return;
+    var src = card.getAttribute('data-video-src');
+    var kind = card.getAttribute('data-video-kind') || 'direct';
+    if (src) btn.addEventListener('click', function() { playInline(card, src, kind); });
+  });
+  document.querySelectorAll('.unikor-trust__video-close').forEach(function(btn) {
+    var card = btn.closest('.unikor-trust__video-card');
+    if (card) btn.addEventListener('click', function() { stopInline(card); });
+  });
+  document.querySelectorAll('.unikor-trust__video-card').forEach(function(card) {
+    card.addEventListener('keydown', function(e) { if (e.key === 'Escape') stopInline(card); });
+  });
+})();
+</script>
 
 {% schema %}
 {
@@ -47,8 +116,9 @@
       "type": "video",
       "name": "Video",
       "settings": [
-        { "type": "image_picker", "id": "video_thumbnail", "label": "Thumbnail image" },
-        { "type": "url", "id": "video_url", "label": "Video URL (YouTube, Vimeo, or direct link)" }
+        { "type": "video", "id": "video", "label": "Upload video (Shopify)", "info": "Optional. Upload a video directly; otherwise use thumbnail + URL below." },
+        { "type": "image_picker", "id": "video_thumbnail", "label": "Thumbnail image", "info": "Used when video is from URL (not upload)." },
+        { "type": "url", "id": "video_url", "label": "Video URL (YouTube, Vimeo, or direct .mp4 link)", "info": "Videos play inside the block. Leave blank if using uploaded video." }
       ]
     }
   ],

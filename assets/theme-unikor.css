@@ -58,7 +58,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 .unikor-product-hero__reviews { margin-bottom: 0.5rem; }
 .unikor-product-hero__stars { color: #f59e0b; font-size: 1rem; letter-spacing: 0.05em; }
 .unikor-product-hero__review-count { font-size: 0.9rem; color: #6b7280; margin-left: 0.35rem; }
-.unikor-product-hero__price-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 0.5rem 0; }
+.unikor-product-hero__prices { text-align: center; }
+.unikor-product-hero__price-row { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin: 0.5rem 0; }
 .unikor-product-hero__compare-price { font-size: 1rem; color: #6b7280; text-decoration: line-through; }
 .unikor-product-hero__price { font-size: 1.5rem; font-weight: 700; color: #1f2937; }
 .unikor-product-hero__save-pill { background: #22c55e; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; }
@@ -76,7 +77,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 .unikor-product-hero__note-dot { width: 6px; height: 6px; border-radius: 50%; background: #dc2626; flex-shrink: 0; }
 
 .unikor-product-hero__buy-more { margin: 1.25rem 0; }
-.unikor-product-hero__fast-bundle { margin: 1.25rem 0; }
+.unikor-product-hero__fast-bundle { margin: 1.25rem 0; overflow: visible; }
+.unikor-product-hero__fast-bundle .rbrFastBundlePage { min-height: 180px; }
 .unikor-product-hero__buy-more-title { font-size: 1rem; font-weight: 600; color: #1f2937; margin: 0 0 0.75rem; }
 .unikor-product-hero__options { display: flex; flex-direction: column; gap: 0.5rem; }
 .unikor-product-hero__option { display: block; border: 1px solid #d1d5db; border-radius: 8px; padding: 0.75rem 1rem; cursor: pointer; position: relative; }
@@ -109,10 +111,23 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 .unikor-trust__heading { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0 0 2rem; }
 .unikor-trust__videos { display: flex; flex-wrap: wrap; gap: 1.5rem; max-width: 900px; margin: 0 auto 1.5rem; justify-content: center; }
 @media (max-width: 768px) { .unikor-trust__videos { flex-direction: column; align-items: center; } }
-.unikor-trust__video-card { position: relative; flex: 0 1 260px; min-width: 260px; max-width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); aspect-ratio: 16/10; background: #f3f4f6; }
+/* Portrait video cards (9:16) */
+.unikor-trust__video-card { position: relative; flex: 0 1 200px; min-width: 160px; max-width: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); aspect-ratio: 9/16; background: #f3f4f6; }
+.unikor-trust__video-poster { position: absolute; inset: 0; }
+.unikor-trust__video-card.is-playing .unikor-trust__video-poster { display: none; }
 .unikor-trust__video-card img { width: 100%; height: 100%; object-fit: cover; }
 .unikor-trust__video-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 0.9rem; }
 .unikor-trust__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; padding: 0; color: #fff; }
+.unikor-trust__play--inline { cursor: pointer; }
+.unikor-trust__play:disabled { cursor: default; opacity: 0.6; }
+/* Inline player inside block */
+.unikor-trust__video-player { position: absolute; inset: 0; display: none; background: #000; z-index: 1; }
+.unikor-trust__video-card.is-playing .unikor-trust__video-player { display: flex; flex-direction: column; }
+.unikor-trust__video-embed { flex: 1; position: relative; min-height: 0; }
+.unikor-trust__video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.unikor-trust__video-embed video { width: 100%; height: 100%; object-fit: contain; display: block; }
+.unikor-trust__video-close { position: absolute; top: 0.25rem; right: 0.25rem; z-index: 2; width: 1.75rem; height: 1.75rem; border: none; background: rgba(0,0,0,0.6); color: #fff; font-size: 1.25rem; line-height: 1; cursor: pointer; border-radius: 4px; padding: 0; }
+.unikor-trust__video-close:hover { background: rgba(0,0,0,0.9); }
 .unikor-trust__dot { width: 8px; height: 8px; border-radius: 50%; background: #374151; margin: 0 auto; }
 
 /* ---- Rich content: image left or right ---- */
@@ -156,6 +171,9 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 /* ---- Reviews ---- */
 .unikor-reviews { padding: 3rem 1rem; background: #fff; }
 .unikor-reviews__heading { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0 0 1.5rem; }
+.unikor-reviews__block-heading { font-size: 1.1rem; font-weight: 600; color: #1f2937; margin: 0 0 0.75rem; }
+.unikor-reviews__block-content,
+.unikor-reviews__block-html { font-size: 0.95rem; color: #374151; margin-bottom: 1rem; }
 .unikor-reviews__no-product { font-size: 0.95rem; color: #6b7280; margin: 0; }
 .unikor-reviews__summary { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; margin-bottom: 2rem; max-width: 1000px; margin-left: auto; margin-right: auto; }
 .unikor-reviews__score-box { background: #000; color: #fff; padding: 1rem 1.5rem; text-align: center; }
