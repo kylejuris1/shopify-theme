@@ -12,31 +12,12 @@
     "featured_product": {
       "type": "featured-product-unikor",
       "blocks": {
-        "media": {
-          "type": "media",
-          "settings": {}
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "prices": {
-          "type": "prices",
-          "settings": {}
-        },
-        "fast_bundle": {
-          "type": "fast_bundle",
-          "settings": {
-            "bundle_id": "52de5856-5af3-49dd-a037-9b19978bbb15"
-          }
-        }
+        "media": { "type": "media", "settings": {} },
+        "description": { "type": "description", "settings": {} },
+        "prices": { "type": "prices", "settings": {} },
+        "fast_bundle": { "type": "fast_bundle", "settings": { "bundle_id": "52de5856-5af3-49dd-a037-9b19978bbb15" } }
       },
-      "block_order": [
-        "media",
-        "description",
-        "prices",
-        "fast_bundle"
-      ],
+      "block_order": ["media", "description", "prices", "fast_bundle"],
       "settings": {
         "product_heading": "NightGuard Bedwetting Alarm",
         "review_count": "1555",
@@ -49,24 +30,11 @@
     "video_testimonials": {
       "type": "trust-badge",
       "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {}
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {}
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {}
-        }
+        "video_1": { "type": "video", "settings": {} },
+        "video_2": { "type": "video", "settings": {} },
+        "video_3": { "type": "video", "settings": {} }
       },
-      "block_order": [
-        "video_1",
-        "video_2",
-        "video_3"
-      ],
+      "block_order": ["video_1", "video_2", "video_3"],
       "settings": {
         "heading": "Plus de 11 000 familles satisfaites"
       }
@@ -101,110 +69,27 @@
     },
     "product_reviews": {
       "type": "reviews-section",
-      "settings": {}
+      "settings": {
+        "heading": ""
+      }
     },
     "faq": {
       "type": "faq-accordion",
       "blocks": {
-        "faq_1": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Comment fonctionne le NightGuard™ ?",
-            "answer": "L'alarme utilise un capteur d'humidité fixé au slip de votre enfant. Dès les premières gouttes, elle déclenche une alarme et une vibration douce pour le réveiller et l'aider à reconnaître le besoin d'aller aux toilettes. Avec le temps, son corps apprend à reconnaître naturellement l'envie d'uriner."
-          }
-        },
-        "faq_2": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Y a-t-il une garantie ?",
-            "answer": "Absolument ! Nous garantissons la qualité et l'efficacité de notre produit avec une garantie satisfaction 60 jours, pour acheter en toute confiance."
-          }
-        },
-        "faq_3": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Est-ce facile à nettoyer ?",
-            "answer": "Oui ! Passez simplement une lingette désinfectante sur le NightGuard™ quand nécessaire."
-          }
-        },
-        "faq_4": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Combien de temps dure la batterie ?",
-            "answer": "La batterie du NightGuard dure plusieurs nuits et se recharge facilement avec le chargeur USB-C fourni."
-          }
-        },
-        "faq_5": {
-          "type": "faq_item",
-          "settings": {
-            "question": "L'alarme est-elle sûre et confortable pour mon enfant ?",
-            "answer": "Absolument ! Le NightGuard™ est conçu pour le confort de votre enfant : léger, compact, avec réglages du son et de la vibration selon ses préférences."
-          }
-        },
-        "faq_6": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Quand peut-on espérer voir des résultats ?",
-            "answer": "Beaucoup d'utilisateurs constatent des améliorations dès les premières semaines. La régularité est essentielle ; avec une utilisation régulière, la plupart des enfants obtiennent des nuits au sec de façon durable."
-          }
-        },
-        "faq_7": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Est-ce difficile à installer et à utiliser ?",
-            "answer": "Pas du tout. Le NightGuard™ est livré avec des instructions claires. Fixez le capteur au slip et l'unité d'alarme au haut du pyjama ou au brassard."
-          }
-        },
-        "faq_8": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Est-ce que ça marche pour les plus grands ?",
-            "answer": "Oui ! Le NightGuard est conçu pour des enfants de tous âges, y compris les plus grands qui ont encore des accidents. La taille n'est pas un problème : le brassard est réglable et fonctionne même avec les couches-culottes. Beaucoup de parents le trouvent utile pour les gros dormeurs et les enfants qui n'ont pas répondu à d'autres méthodes."
-          }
-        },
-        "faq_9": {
-          "type": "faq_item",
-          "settings": {
-            "question": "L'alarme dérange-t-elle les autres dans la maison ?",
-            "answer": "Le NightGuard™ propose un volume réglable et un mode vibration pour rester discret et limiter les dérangements."
-          }
-        },
-        "faq_10": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Convient-il aux gros dormeurs ?",
-            "answer": "Oui ! Le son et la vibration réveillent même les gros dormeurs et les aident à prendre l'habitude de se réveiller quand ils ont besoin d'uriner."
-          }
-        },
-        "faq_11": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Peut-il être utilisé pour les ados ou les adultes ?",
-            "answer": "Oui, le NightGuard™ convient à tous les âges concernés par les fuites nocturnes, y compris ados et adultes."
-          }
-        },
-        "faq_12": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Comment bien accompagner mon enfant ?",
-            "answer": "Pour bien accompagner votre enfant avec le NightGuard™, soyez réguliers : utilisez l'alarme chaque nuit pour renforcer le lien cerveau-vessie. Les premières nuits, nous recommandons de dormir dans la même chambre pour qu'il se réveille au son de l'alarme et aille aux toilettes. Avec le temps, il se réveillera de lui-même. Suivre ses progrès avec un tableau de récompenses (étoiles pour les nuits au sec) le motive et renforce sa confiance."
-          }
-        }
+        "faq_1": { "type": "faq_item", "settings": { "question": "Comment fonctionne le NightGuard™ ?", "answer": "L'alarme utilise un capteur d'humidité fixé au slip de votre enfant. Dès les premières gouttes, elle déclenche une alarme et une vibration douce pour le réveiller et l'aider à reconnaître le besoin d'aller aux toilettes. Avec le temps, son corps apprend à reconnaître naturellement l'envie d'uriner." }},
+        "faq_2": { "type": "faq_item", "settings": { "question": "Y a-t-il une garantie ?", "answer": "Absolument ! Nous garantissons la qualité et l'efficacité de notre produit avec une garantie satisfaction 60 jours, pour acheter en toute confiance." }},
+        "faq_3": { "type": "faq_item", "settings": { "question": "Est-ce facile à nettoyer ?", "answer": "Oui ! Passez simplement une lingette désinfectante sur le NightGuard™ quand nécessaire." }},
+        "faq_4": { "type": "faq_item", "settings": { "question": "Combien de temps dure la batterie ?", "answer": "La batterie du NightGuard dure plusieurs nuits et se recharge facilement avec le chargeur USB-C fourni." }},
+        "faq_5": { "type": "faq_item", "settings": { "question": "L'alarme est-elle sûre et confortable pour mon enfant ?", "answer": "Absolument ! Le NightGuard™ est conçu pour le confort de votre enfant : léger, compact, avec réglages du son et de la vibration selon ses préférences." }},
+        "faq_6": { "type": "faq_item", "settings": { "question": "Quand peut-on espérer voir des résultats ?", "answer": "Beaucoup d'utilisateurs constatent des améliorations dès les premières semaines. La régularité est essentielle ; avec une utilisation régulière, la plupart des enfants obtiennent des nuits au sec de façon durable." }},
+        "faq_7": { "type": "faq_item", "settings": { "question": "Est-ce difficile à installer et à utiliser ?", "answer": "Pas du tout. Le NightGuard™ est livré avec des instructions claires. Fixez le capteur au slip et l'unité d'alarme au haut du pyjama ou au brassard." }},
+        "faq_8": { "type": "faq_item", "settings": { "question": "Est-ce que ça marche pour les plus grands ?", "answer": "Oui ! Le NightGuard est conçu pour des enfants de tous âges, y compris les plus grands qui ont encore des accidents. La taille n'est pas un problème : le brassard est réglable et fonctionne même avec les couches-culottes. Beaucoup de parents le trouvent utile pour les gros dormeurs et les enfants qui n'ont pas répondu à d'autres méthodes." }},
+        "faq_9": { "type": "faq_item", "settings": { "question": "L'alarme dérange-t-elle les autres dans la maison ?", "answer": "Le NightGuard™ propose un volume réglable et un mode vibration pour rester discret et limiter les dérangements." }},
+        "faq_10": { "type": "faq_item", "settings": { "question": "Convient-il aux gros dormeurs ?", "answer": "Oui ! Le son et la vibration réveillent même les gros dormeurs et les aident à prendre l'habitude de se réveiller quand ils ont besoin d'uriner." }},
+        "faq_11": { "type": "faq_item", "settings": { "question": "Peut-il être utilisé pour les ados ou les adultes ?", "answer": "Oui, le NightGuard™ convient à tous les âges concernés par les fuites nocturnes, y compris ados et adultes." }},
+        "faq_12": { "type": "faq_item", "settings": { "question": "Comment bien accompagner mon enfant ?", "answer": "Pour bien accompagner votre enfant avec le NightGuard™, soyez réguliers : utilisez l'alarme chaque nuit pour renforcer le lien cerveau-vessie. Les premières nuits, nous recommandons de dormir dans la même chambre pour qu'il se réveille au son de l'alarme et aille aux toilettes. Avec le temps, il se réveillera de lui-même. Suivre ses progrès avec un tableau de récompenses (étoiles pour les nuits au sec) le motive et renforce sa confiance." }}
       },
-      "block_order": [
-        "faq_1",
-        "faq_2",
-        "faq_3",
-        "faq_4",
-        "faq_5",
-        "faq_6",
-        "faq_7",
-        "faq_8",
-        "faq_9",
-        "faq_10",
-        "faq_11",
-        "faq_12"
-      ],
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7", "faq_8", "faq_9", "faq_10", "faq_11", "faq_12"],
       "settings": {}
     },
     "related_products": {
