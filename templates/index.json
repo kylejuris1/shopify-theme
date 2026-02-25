@@ -14,10 +14,9 @@
       "blocks": {
         "media": { "type": "media", "settings": {} },
         "description": { "type": "description", "settings": {} },
-        "prices": { "type": "prices", "settings": {} },
         "fast_bundle": { "type": "fast_bundle", "settings": { "bundle_id": "52de5856-5af3-49dd-a037-9b19978bbb15" } }
       },
-      "block_order": ["media", "description", "prices", "fast_bundle"],
+      "block_order": ["media", "description", "fast_bundle"],
       "settings": {
         "product_heading": "NightGuard Bedwetting Alarm",
         "review_count": "1555",

@@ -76,6 +76,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 .unikor-product-hero__note-dot { width: 6px; height: 6px; border-radius: 50%; background: #dc2626; flex-shrink: 0; }
 
 .unikor-product-hero__buy-more { margin: 1.25rem 0; }
+.unikor-product-hero__fast-bundle { margin: 1.25rem 0; }
 .unikor-product-hero__buy-more-title { font-size: 1rem; font-weight: 600; color: #1f2937; margin: 0 0 0.75rem; }
 .unikor-product-hero__options { display: flex; flex-direction: column; gap: 0.5rem; }
 .unikor-product-hero__option { display: block; border: 1px solid #d1d5db; border-radius: 8px; padding: 0.75rem 1rem; cursor: pointer; position: relative; }
@@ -92,6 +93,9 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 .unikor-product-hero__btn-buy:hover:not(:disabled) { background: #333; }
 .unikor-product-hero__btn-buy:disabled { opacity: 0.6; cursor: not-allowed; }
 .unikor-product-hero__payments { margin-top: 1rem; font-size: 0.8rem; color: #9ca3af; }
+.unikor-product-hero__bundle { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
+.unikor-product-hero__bundle .rbrFastBundlePage { font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif); font-size: 0.95rem; color: #374151; }
+.unikor-product-hero__bundle .rbrFastBundlePage * { box-sizing: border-box; }
 
 /* ---- Sticky bar: orange, bottom ---- */
 .unikor-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #ea580c; color: #fff; padding: 0.75rem 1rem; display: none; align-items: center; justify-content: space-between; z-index: 50; box-shadow: 0 -2px 10px rgba(0,0,0,0.15); }

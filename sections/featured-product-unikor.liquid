@@ -2,10 +2,9 @@
 {% assign featured = section.settings.product %}
 {% assign media_block = section.blocks | where: 'type', 'media' | first %}
 {% assign description_block = section.blocks | where: 'type', 'description' | first %}
-{% assign prices_block = section.blocks | where: 'type', 'prices' | first %}
-{% assign fast_bundle_block = section.blocks | where: 'type', 'fast_bundle' | first %}
+{% assign prices_bundle_block = section.blocks | where: 'type', 'fast_bundle' | first %}
 {% assign use_blocks = false %}
-{% if media_block != blank or description_block != blank or prices_block != blank or fast_bundle_block != blank %}
+{% if media_block != blank or description_block != blank or prices_bundle_block != blank %}
   {% assign use_blocks = true %}
 {% endif %}
 
@@ -98,8 +97,8 @@
           </div>
         {% endif %}
 
-        {% if prices_block != blank %}
-          <div class="unikor-product-hero__prices" {{ prices_block.shopify_attributes }}>
+        {% if prices_bundle_block != blank %}
+          <div class="unikor-product-hero__prices" {{ prices_bundle_block.shopify_attributes }}>
             <div class="unikor-product-hero__price-row">
               {% if featured != blank and featured.compare_at_price > featured.price %}
                 <span class="unikor-product-hero__compare-price">{{ featured.compare_at_price | money }}</span>
@@ -114,30 +113,11 @@
                 <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
               {% endif %}
             </div>
-            <div class="unikor-product-hero__buy-more">
-              <h4 class="unikor-product-hero__buy-more-title">Buy more and save</h4>
-              <div class="unikor-product-hero__options">
-                <label class="unikor-product-hero__option">
-                  <input type="radio" name="quantity_tier" value="1" checked>
-                  <span class="unikor-product-hero__option-label">Buy 1 and save</span>
-                  <span class="unikor-product-hero__option-price">{% if featured != blank %}{{ featured.price | money }}{% else %}$44.00{% endif %}</span>
-                  <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
-                </label>
-                <label class="unikor-product-hero__option unikor-product-hero__option--popular">
-                  <input type="radio" name="quantity_tier" value="2">
-                  <span class="unikor-product-hero__option-label">Buy 2 and save 12%</span>
-                  <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.88 | round | money }}{% else %}$39.00{% endif %}</span>
-                  <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
-                  <span class="unikor-product-hero__option-badge">Most Popular</span>
-                </label>
-                <label class="unikor-product-hero__option">
-                  <input type="radio" name="quantity_tier" value="3">
-                  <span class="unikor-product-hero__option-label">Buy 3+ and save 20%</span>
-                  <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.8 | round | money }}{% else %}$35.00{% endif %}</span>
-                  <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
-                </label>
+            {% if prices_bundle_block.settings.bundle_id != blank %}
+              <div class="unikor-product-hero__fast-bundle">
+                <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="{{ prices_bundle_block.settings.bundle_id }}"></div>
               </div>
-            </div>
+            {% endif %}
             <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
             {% if featured != blank %}
               {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
@@ -150,11 +130,6 @@
             <div class="unikor-product-hero__payments">
               <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
             </div>
-          </div>
-        {% endif %}
-        {% if fast_bundle_block != blank and fast_bundle_block.settings.bundle_id != blank %}
-          <div class="unikor-product-hero__fast-bundle" {{ fast_bundle_block.shopify_attributes }}>
-            <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="{{ fast_bundle_block.settings.bundle_id }}"></div>
           </div>
         {% endif %}
       </div>
@@ -338,14 +313,8 @@
       "settings": []
     },
     {
-      "type": "prices",
-      "name": "Prices & CTA",
-      "limit": 1,
-      "settings": []
-    },
-    {
       "type": "fast_bundle",
-      "name": "Fast Bundle",
+      "name": "Prices & CTA",
       "limit": 1,
       "settings": [
         { "type": "text", "id": "bundle_id", "label": "Bundle ID", "default": "52de5856-5af3-49dd-a037-9b19978bbb15", "info": "From Fast Bundle app: Place Bundles Anywhere → copy the bundle-ids value." }
@@ -359,7 +328,6 @@
       "blocks": [
         { "type": "media" },
         { "type": "description" },
-        { "type": "prices" },
         { "type": "fast_bundle", "settings": { "bundle_id": "52de5856-5af3-49dd-a037-9b19978bbb15" } }
       ]
     }
