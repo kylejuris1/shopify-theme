@@ -106,16 +106,16 @@
         {% if prices_bundle_block != blank %}
           <div class="unikor-product-hero__prices" {{ prices_bundle_block.shopify_attributes }}>
             <div class="unikor-product-hero__price-row">
-              {% if featured != blank and featured.compare_at_price > featured.price %}
-                <span class="unikor-product-hero__compare-price">{{ featured.compare_at_price | money }}</span>
-              {% elsif section.settings.compare_price != blank %}
+              {% if featured_media_product != blank and featured_media_product.compare_at_price > featured_media_product.price %}
+                <span class="unikor-product-hero__compare-price">{{ featured_media_product.compare_at_price | money }}</span>
+              {% elsif featured_media_product == blank and section.settings.compare_price != blank %}
                 <span class="unikor-product-hero__compare-price">{{ section.settings.compare_price }}</span>
               {% endif %}
-              <span class="unikor-product-hero__price">{% if featured != blank %}{{ featured.price | money }}{% else %}{{ section.settings.price | default: '$44.00' }}{% endif %}</span>
-              {% if featured != blank and featured.compare_at_price > featured.price %}
-                {% assign save_pct = featured.compare_at_price | minus: featured.price | times: 100 | divided_by: featured.compare_at_price %}
+              <span class="unikor-product-hero__price">{% if featured_media_product != blank %}{{ featured_media_product.price | money }}{% else %}{{ section.settings.price | default: '$44.00' }}{% endif %}</span>
+              {% if featured_media_product != blank and featured_media_product.compare_at_price > featured_media_product.price %}
+                {% assign save_pct = featured_media_product.compare_at_price | minus: featured_media_product.price | times: 100 | divided_by: featured_media_product.compare_at_price %}
                 <span class="unikor-product-hero__save-pill">SAVE {{ save_pct }}%</span>
-              {% elsif section.settings.save_percent != blank %}
+              {% elsif featured_media_product == blank and section.settings.save_percent != blank %}
                 <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
               {% endif %}
             </div>
@@ -125,10 +125,10 @@
               </div>
             {% endif %}
             <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
-            {% if featured != blank %}
-              {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
-                <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
-                <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured.available %}disabled{% endunless %}>BUY NOW</button>
+            {% if featured_media_product != blank %}
+              {% form 'product', featured_media_product, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
+                <input type="hidden" name="id" value="{{ featured_media_product.selected_or_first_available_variant.id }}">
+                <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured_media_product.available %}disabled{% endunless %}>BUY NOW</button>
               {% endform %}
             {% else %}
               <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
