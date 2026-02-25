@@ -55,29 +55,16 @@
     "video_testimonials": {
       "type": "trust-badge",
       "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {
-            "video_url": ""
-          }
-        },
         "video_2": {
           "type": "video",
           "settings": {
-            "video_url": ""
-          }
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {
-            "video_url": ""
+            "video_thumbnail": "shopify://shop_images/tm.png",
+            "video_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/Shopify/test1_720p.mp4"
           }
         }
       },
       "block_order": [
-        "video_1",
-        "video_2",
-        "video_3"
+        "video_2"
       ],
       "settings": {
         "heading": "Plus de 11 000 familles satisfaites"
@@ -94,7 +81,8 @@
       "settings": {
         "heading": "En finir avec le pipi au lit avant que ça ne devienne quotidien",
         "layout": "image_left",
-        "image_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/D1.jpg",
+        "image_url": "",
+        "image": "shopify://shop_images/D1.jpg",
         "overlay_text": "",
         "body": "<p>Votre enfant a des difficultés avec le pipi au lit la nuit malgré tous vos efforts ? Vous êtes épuisé par le linge sans fin, les nuits perturbées et la confiance de votre enfant qui diminue à chaque nuit mouillée ?</p><p>Ne pas régler ce problème n'affecte pas seulement l'estime de soi de votre enfant : il peut aussi manquer des pyjamas-partys et des moments sympas par peur des accidents.</p><p>Découvrez le <strong>NightGuard Bedwetting Alarm</strong> — une solution éprouvée conçue pour aider votre enfant à rester au sec la nuit. Grâce à une technologie de détection d'humidité avancée, le NightGuard détecte la première goutte d'urine et réveille doucement votre enfant. Cela entraîne son cerveau à reconnaître les signaux de la vessie, pour des nuits au sec durablement, sans médicament.</p>",
         "alt_bg": false,
@@ -107,8 +95,9 @@
       "settings": {
         "heading": "Des nuits sereines pour toute la famille",
         "layout": "image_right",
-        "image_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/D2.png",
-        "overlay_text": "Des nuits au sec avec NightGuard™",
+        "image_url": "",
+        "image": "shopify://shop_images/D2.png",
+        "overlay_text": "",
         "body": "<p>Imaginez un <strong>sommeil sans interruption</strong> sans change en pleine nuit ni réveils. Le NightGuard Bedwetting Alarm aide votre enfant et redonne aussi la tranquillité à toute la maison.</p><p>Son design confortable et compact permet à votre enfant de bien dormir pendant que l'alarme veille et n'intervient qu'au bon moment.</p><p>Réveillez-vous <strong>en forme</strong>, avec des matinées sans stress ni corvées en plus.</p>",
         "alt_bg": false,
         "button_label": "",
@@ -120,7 +109,8 @@
       "settings": {
         "heading": "En finir avec le pipi au lit ou remboursé",
         "body": "<p>Testez le NightGuard™ Bedwetting Alarm pendant 60 jours. Si vous ne constatez pas d'amélioration nette pour votre enfant, contactez-nous. Nous vous remboursons intégralement, sans discussion !</p>",
-        "video_image_url": "https://novels-cover-app.s3.us-west-1.amazonaws.com/D3.jpg"
+        "video_image_url": "",
+        "video_image": "shopify://shop_images/D3.jpg"
       }
     },
     "faq": {
@@ -233,6 +223,10 @@
         "heading": "Découvrez notre version sans fil :",
         "products_to_show": 4
       }
+    },
+    "1772000225922e4047": {
+      "type": "apps",
+      "settings": {}
     }
   },
   "order": [
@@ -243,6 +237,7 @@
     "product_desc_2",
     "product_desc_3",
     "faq",
-    "related_products"
+    "related_products",
+    "1772000225922e4047"
   ]
 }
