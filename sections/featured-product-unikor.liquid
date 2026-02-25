@@ -126,14 +126,6 @@
               </div>
             {% endif %}
             <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
-            {% if featured_media_product != blank %}
-              {% form 'product', featured_media_product, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
-                <input type="hidden" name="id" value="{{ featured_media_product.selected_or_first_available_variant.id }}">
-                <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured_media_product.available %}disabled{% endunless %}>BUY NOW</button>
-              {% endform %}
-            {% else %}
-              <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
-            {% endif %}
             <div class="unikor-product-hero__payments">
               <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
             </div>
@@ -259,14 +251,6 @@
           </div>
         </div>
         <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
-        {% if featured != blank %}
-          {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
-            <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
-            <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured.available %}disabled{% endunless %}>BUY NOW</button>
-          {% endform %}
-        {% else %}
-          <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
-        {% endif %}
         <div class="unikor-product-hero__payments">
           <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
         </div>

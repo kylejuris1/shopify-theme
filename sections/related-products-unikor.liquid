@@ -17,7 +17,6 @@
             {% else %}
               <div class="unikor-related__img-placeholder"><span>Produit</span></div>
             {% endif %}
-            <span class="unikor-related__badge-60">60</span>
             <div class="unikor-related__badges">
               {% if prod.compare_at_price > prod.price %}
                 {% assign save_pct = prod.compare_at_price | minus: prod.price | times: 100 | divided_by: prod.compare_at_price %}
@@ -43,7 +42,6 @@
         <a href="{{ routes.collections_url }}" class="unikor-related__card">
           <div class="unikor-related__img-wrap">
             <div class="unikor-related__img-placeholder"><span>Image du produit</span></div>
-            <span class="unikor-related__badge-60">60</span>
             <div class="unikor-related__badges">
               <span class="unikor-related__save">✓ ÉCONOMISEZ 42%</span>
               <span class="unikor-related__as-seen">VU DANS</span>
