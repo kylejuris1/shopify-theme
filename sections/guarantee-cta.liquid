@@ -4,17 +4,17 @@
       {% if section.settings.video_image != blank %}
         <img src="{{ section.settings.video_image | image_url: width: 500 }}" alt="" width="500" height="320" loading="lazy">
       {% else %}
-        <div class="unikor-guarantee__placeholder"><span>Video / image placeholder</span></div>
+        <div class="unikor-guarantee__placeholder"><span>Image / vidéo</span></div>
       {% endif %}
     </div>
     <div class="unikor-guarantee__content">
-      <h2 class="unikor-guarantee__title">{{ section.settings.heading | default: 'End Bedwetting or Get Your Money Back' }}</h2>
+      <h2 class="unikor-guarantee__title">{{ section.settings.heading | default: 'En finir avec le pipi au lit ou remboursé' }}</h2>
       <div class="unikor-guarantee__text">
-        {% if section.settings.body != blank %}{{ section.settings.body }}{% else %}<p>Try out the NightGuard™ Bedwetting Alarm for 60 days. If you don't see a noticeable improvement in your child's bedwetting, just let us know. We'll refund every penny, no questions asked!</p>{% endif %}
+        {% if section.settings.body != blank %}{{ section.settings.body }}{% else %}<p>Testez le NightGuard™ Bedwetting Alarm pendant 60 jours. Si vous ne constatez pas d'amélioration nette pour votre enfant, contactez-nous. Nous vous remboursons intégralement, sans discussion !</p>{% endif %}
       </div>
-      <p class="unikor-guarantee__risk">Give the NightGuard™ a try <strong>risk free.</strong></p>
-      <p class="unikor-guarantee__ready">Ready to Help Your Child Stay Dry?</p>
-      <p class="unikor-guarantee__get">Get the NightGuard Bedwetting Alarm Today!</p>
+      <p class="unikor-guarantee__risk">Essayez le NightGuard™ <strong>sans risque.</strong></p>
+      <p class="unikor-guarantee__ready">Prêt à aider votre enfant à rester au sec ?</p>
+      <p class="unikor-guarantee__get">Commandez le NightGuard Bedwetting Alarm dès aujourd'hui !</p>
       {% if section.settings.button_label != blank %}
         <a href="{{ section.settings.button_link | default: '/cart' }}" class="unikor-btn unikor-btn--black unikor-guarantee__btn">{{ section.settings.button_label }}</a>
       {% endif %}
@@ -28,10 +28,10 @@
   "class": "section-guarantee-cta",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "End Bedwetting or Get Your Money Back" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "En finir avec le pipi au lit ou remboursé" },
     { "type": "html", "id": "body", "label": "Body HTML" },
     { "type": "image_picker", "id": "video_image", "label": "Video / image" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Get it now" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Commander" },
     { "type": "url", "id": "button_link", "label": "Button link" }
   ]
 }

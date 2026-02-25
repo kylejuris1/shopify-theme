@@ -1,0 +1,27 @@
+{
+  "accessibility": {
+    "skip_to_content": "Passer au contenu"
+  },
+  "general": {
+    "meta": {
+      "tags": "Étiqueté « {{ tags }} »",
+      "page": "Page {{ page }}"
+    }
+  },
+  "header": {
+    "home": "Accueil",
+    "collections": "Collections",
+    "cart": "Panier"
+  },
+  "footer": {
+    "all_rights": "Tous droits réservés.",
+    "privacy": "Confidentialité",
+    "refund": "Retours",
+    "terms": "Conditions générales"
+  },
+  "product": {
+    "add_to_cart": "Ajouter au panier",
+    "sold_out": "Rupture de stock",
+    "no_media": "Aucune image"
+  }
+}

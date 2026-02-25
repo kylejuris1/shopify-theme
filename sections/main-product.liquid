@@ -12,8 +12,9 @@
       {% if product.description != blank %}<div>{{ product.description }}</div>{% endif %}
       {% form 'product', product %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="return_to" value="/checkout">
         <button type="submit" name="add" class="btn btn--primary" {% unless product.available %}disabled{% endunless %}>
-          {% if product.available %}{{ 'product.add_to_cart' | t | default: 'Add to cart' }}{% else %}{{ 'product.sold_out' | t | default: 'Sold out' }}{% endif %}
+          {% if product.available %}{{ 'product.add_to_cart' | t | default: 'Ajouter au panier' }}{% else %}{{ 'product.sold_out' | t | default: 'Rupture de stock' }}{% endif %}
         </button>
       {% endform %}
     </div>

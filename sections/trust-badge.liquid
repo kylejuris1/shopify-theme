@@ -1,6 +1,6 @@
 <section class="unikor-trust">
   <div class="page-width">
-    <h2 class="unikor-trust__heading">{{ section.settings.heading | default: 'Over 11k+ Dry Happy Families' }}</h2>
+    <h2 class="unikor-trust__heading">{{ section.settings.heading | default: 'Plus de 11 000 familles satisfaites' }}</h2>
     <div class="unikor-trust__videos">
       {% for i in (1..3) %}
         <div class="unikor-trust__video-card">
@@ -11,9 +11,9 @@
           {% elsif section.settings.video_image_3 != blank and i == 3 %}
             <img src="{{ section.settings.video_image_3 | image_url: width: 400 }}" alt="" width="400" height="250">
           {% else %}
-            <div class="unikor-trust__video-placeholder"><span>Video {{ i }}</span></div>
+            <div class="unikor-trust__video-placeholder"><span>Vidéo {{ i }}</span></div>
           {% endif %}
-          <button type="button" class="unikor-trust__play" aria-label="Play video">
+          <button type="button" class="unikor-trust__play" aria-label="Lire la vidéo">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg>
           </button>
         </div>
@@ -29,7 +29,7 @@
   "class": "section-trust-badge",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Over 11k+ Dry Happy Families" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Plus de 11 000 familles satisfaites" },
     { "type": "image_picker", "id": "video_image_1", "label": "Video thumbnail 1" },
     { "type": "image_picker", "id": "video_image_2", "label": "Video thumbnail 2" },
     { "type": "image_picker", "id": "video_image_3", "label": "Video thumbnail 3" }

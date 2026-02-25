@@ -33,6 +33,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading, 'Plus Jakarta Sans', sans-seri
 .unikor-product-hero { padding: 2rem 0 3rem; background: #fff; }
 .unikor-product-hero__container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; display: grid; gap: 2.5rem; align-items: start; }
 @media (min-width: 990px) { .unikor-product-hero__container { grid-template-columns: 1fr 1fr; } }
+.unikor-product-hero__right { display: flex; flex-direction: column; gap: 1.5rem; }
 
 .unikor-product-hero__main-wrap { position: relative; background: #f3f4f6; border-radius: 8px; overflow: hidden; }
 .unikor-product-hero__main-img { width: 100%; height: auto; display: block; }

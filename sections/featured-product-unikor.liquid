@@ -1,143 +1,288 @@
-{% comment %} Featured product in Harba style - works on homepage (no product object). Use product picker or show placeholder. {% endcomment %}
+{% comment %} Featured product in Harba style - works on homepage (no product object). Use product picker or show placeholder. Split into 3 blocks: media (left), description (upper right), prices (lower right). {% endcomment %}
 {% assign featured = section.settings.product %}
+{% assign media_block = section.blocks | where: 'type', 'media' | first %}
+{% assign description_block = section.blocks | where: 'type', 'description' | first %}
+{% assign prices_block = section.blocks | where: 'type', 'prices' | first %}
+{% assign use_blocks = media_block != blank or description_block != blank or prices_block != blank %}
+
 <section class="unikor-product-hero">
   <div class="page-width unikor-product-hero__container">
-    <div class="unikor-product-hero__media">
-      <div class="unikor-product-hero__main-wrap">
-        {% if featured != blank and featured.featured_media %}
-          <img
-            class="unikor-product-hero__main-img"
-            src="{{ featured.featured_media | image_url: width: 800 }}"
-            alt="{{ featured.featured_media.alt | default: featured.title }}"
-            width="800"
-            height="{{ 800 | divided_by: featured.featured_media.aspect_ratio | round }}"
-            loading="eager"
-          >
-        {% else %}
-          <div class="unikor-product-hero__img-placeholder"><span>Product image</span></div>
-        {% endif %}
-        <div class="unikor-product-hero__badge-overlay">MONEY BACK<br>60 DAYS<br>GUARANTEE</div>
-      </div>
-      <div class="unikor-product-hero__as-seen">
-        <span class="unikor-product-hero__as-seen-label">AS SEEN ON:</span>
-        <div class="unikor-product-hero__as-seen-logos">
-          {% if section.settings.as_seen_logo_1 != blank %}
-            <img src="{{ section.settings.as_seen_logo_1 | image_url: width: 80 }}" alt="" width="80" height="40">
-          {% else %}
-            <span class="unikor-product-hero__logo-placeholder">Parents</span>
-          {% endif %}
-          {% if section.settings.as_seen_logo_2 != blank %}
-            <img src="{{ section.settings.as_seen_logo_2 | image_url: width: 80 }}" alt="" width="80" height="40">
-          {% else %}
-            <span class="unikor-product-hero__logo-placeholder">abc</span>
-          {% endif %}
-          {% if section.settings.as_seen_logo_3 != blank %}
-            <img src="{{ section.settings.as_seen_logo_3 | image_url: width: 80 }}" alt="" width="80" height="40">
-          {% else %}
-            <span class="unikor-product-hero__logo-placeholder">WebMD</span>
-          {% endif %}
+    {% if use_blocks %}
+      {% comment %} Block-based layout: left = media, right = description (top) + prices (bottom) {% endcomment %}
+      {% if media_block != blank %}
+        <div class="unikor-product-hero__media" {{ media_block.shopify_attributes }}>
+          <div class="unikor-product-hero__main-wrap">
+            {% if featured != blank and featured.featured_media %}
+              <img
+                class="unikor-product-hero__main-img"
+                src="{{ featured.featured_media | image_url: width: 800 }}"
+                alt="{{ featured.featured_media.alt | default: featured.title }}"
+                width="800"
+                height="{{ 800 | divided_by: featured.featured_media.aspect_ratio | round }}"
+                loading="eager"
+              >
+            {% else %}
+              <div class="unikor-product-hero__img-placeholder"><span>Product image</span></div>
+            {% endif %}
+            <div class="unikor-product-hero__badge-overlay">MONEY BACK<br>60 DAYS<br>GUARANTEE</div>
+          </div>
+          <div class="unikor-product-hero__as-seen">
+            <span class="unikor-product-hero__as-seen-label">AS SEEN ON:</span>
+            <div class="unikor-product-hero__as-seen-logos">
+              {% if section.settings.as_seen_logo_1 != blank %}
+                <img src="{{ section.settings.as_seen_logo_1 | image_url: width: 80 }}" alt="" width="80" height="40">
+              {% else %}
+                <span class="unikor-product-hero__logo-placeholder">Parents</span>
+              {% endif %}
+              {% if section.settings.as_seen_logo_2 != blank %}
+                <img src="{{ section.settings.as_seen_logo_2 | image_url: width: 80 }}" alt="" width="80" height="40">
+              {% else %}
+                <span class="unikor-product-hero__logo-placeholder">abc</span>
+              {% endif %}
+              {% if section.settings.as_seen_logo_3 != blank %}
+                <img src="{{ section.settings.as_seen_logo_3 | image_url: width: 80 }}" alt="" width="80" height="40">
+              {% else %}
+                <span class="unikor-product-hero__logo-placeholder">WebMD</span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="unikor-product-hero__thumbs-wrap">
+            <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--prev" aria-label="Previous">‹</button>
+            <div class="unikor-product-hero__thumbs">
+              {% if featured != blank and featured.media.size > 0 %}
+                {% for media in featured.media limit: 5 %}
+                  <button type="button" class="unikor-product-hero__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ media | image_url: width: 800 }}" aria-label="Image {{ forloop.index }}">
+                    <img src="{{ media | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
+                  </button>
+                {% endfor %}
+              {% else %}
+                <div class="unikor-product-hero__thumb-placeholder"><span>1</span></div>
+              {% endif %}
+            </div>
+            <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--next" aria-label="Next">›</button>
+          </div>
         </div>
-      </div>
-      <div class="unikor-product-hero__thumbs-wrap">
-        <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--prev" aria-label="Previous">‹</button>
-        <div class="unikor-product-hero__thumbs">
-          {% if featured != blank and featured.media.size > 0 %}
-            {% for media in featured.media limit: 5 %}
-              <button type="button" class="unikor-product-hero__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ media | image_url: width: 800 }}" aria-label="Image {{ forloop.index }}">
-                <img src="{{ media | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
-              </button>
-            {% endfor %}
-          {% else %}
-            <div class="unikor-product-hero__thumb-placeholder"><span>1</span></div>
-          {% endif %}
-        </div>
-        <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--next" aria-label="Next">›</button>
-      </div>
-    </div>
-
-    <div class="unikor-product-hero__info">
-      <h1 class="unikor-product-hero__title">{% if section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured != blank %}{{ featured.title }}{% else %}NightGuard Bedwetting Alarm{% endif %}</h1>
-      <div class="unikor-product-hero__reviews">
-        <span class="unikor-product-hero__stars">★★★★★</span>
-        <span class="unikor-product-hero__review-count">{{ section.settings.review_count }} reviews</span>
-      </div>
-      <div class="unikor-product-hero__price-row">
-        {% if featured != blank and featured.compare_at_price > featured.price %}
-          <span class="unikor-product-hero__compare-price">{{ featured.compare_at_price | money }}</span>
-        {% elsif section.settings.compare_price != blank %}
-          <span class="unikor-product-hero__compare-price">{{ section.settings.compare_price }}</span>
-        {% endif %}
-        <span class="unikor-product-hero__price">{% if featured != blank %}{{ featured.price | money }}{% else %}{{ section.settings.price | default: '$44.00' }}{% endif %}</span>
-        {% if featured != blank and featured.compare_at_price > featured.price %}
-          {% assign save_pct = featured.compare_at_price | minus: featured.price | times: 100 | divided_by: featured.compare_at_price %}
-          <span class="unikor-product-hero__save-pill">SAVE {{ save_pct }}%</span>
-        {% elsif section.settings.save_percent != blank %}
-          <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
-        {% endif %}
-      </div>
-
-      <ul class="unikor-product-hero__bullets">
-        <li>Soft, lightweight sensor kids barely notice.</li>
-        <li>Wakes your child at the first drop - not the whole house</li>
-        <li>Proven method that trains lasting dry nights - or your money back</li>
-      </ul>
-
-      <div class="unikor-product-hero__testimonial">
-        {% if section.settings.testimonial_image != blank %}
-          <img src="{{ section.settings.testimonial_image | image_url: width: 60 }}" alt="" class="unikor-product-hero__testimonial-avatar" width="60" height="60">
-        {% else %}
-          <div class="unikor-product-hero__testimonial-avatar-placeholder">AM</div>
-        {% endif %}
-        <div>
-          <p class="unikor-product-hero__testimonial-quote">"I thought my kid would never stop wetting the bed."</p>
-          <p class="unikor-product-hero__testimonial-name">Amy M. ★★★★★</p>
-        </div>
-      </div>
-
-      <p class="unikor-product-hero__note">
-        <span class="unikor-product-hero__note-dot"></span> Note: For Limited Time: Free Reward Chart & Stickers Included
-      </p>
-
-      <div class="unikor-product-hero__buy-more">
-        <h4 class="unikor-product-hero__buy-more-title">Buy more and save</h4>
-        <div class="unikor-product-hero__options">
-          <label class="unikor-product-hero__option">
-            <input type="radio" name="quantity_tier" value="1" checked>
-            <span class="unikor-product-hero__option-label">Buy 1 and save</span>
-            <span class="unikor-product-hero__option-price">{% if featured != blank %}{{ featured.price | money }}{% else %}$44.00{% endif %}</span>
-            <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
-          </label>
-          <label class="unikor-product-hero__option unikor-product-hero__option--popular">
-            <input type="radio" name="quantity_tier" value="2">
-            <span class="unikor-product-hero__option-label">Buy 2 and save 12%</span>
-            <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.88 | round | money }}{% else %}$39.00{% endif %}</span>
-            <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
-            <span class="unikor-product-hero__option-badge">Most Popular</span>
-          </label>
-          <label class="unikor-product-hero__option">
-            <input type="radio" name="quantity_tier" value="3">
-            <span class="unikor-product-hero__option-label">Buy 3+ and save 20%</span>
-            <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.8 | round | money }}{% else %}$35.00{% endif %}</span>
-            <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
-          </label>
-        </div>
-      </div>
-
-      <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
-
-      {% if featured != blank %}
-        {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
-          <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
-          <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured.available %}disabled{% endunless %}>BUY NOW</button>
-        {% endform %}
-      {% else %}
-        <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
       {% endif %}
 
-      <div class="unikor-product-hero__payments">
-        <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
+      <div class="unikor-product-hero__right">
+        {% if description_block != blank %}
+          <div class="unikor-product-hero__description" {{ description_block.shopify_attributes }}>
+            <h1 class="unikor-product-hero__title">{% if section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured != blank %}{{ featured.title }}{% else %}NightGuard Bedwetting Alarm{% endif %}</h1>
+            <div class="unikor-product-hero__reviews">
+              <span class="unikor-product-hero__stars">★★★★★</span>
+              <span class="unikor-product-hero__review-count">{{ section.settings.review_count }} reviews</span>
+            </div>
+            <ul class="unikor-product-hero__bullets">
+              <li>Soft, lightweight sensor kids barely notice.</li>
+              <li>Wakes your child at the first drop - not the whole house</li>
+              <li>Proven method that trains lasting dry nights - or your money back</li>
+            </ul>
+            <div class="unikor-product-hero__testimonial">
+              {% if section.settings.testimonial_image != blank %}
+                <img src="{{ section.settings.testimonial_image | image_url: width: 60 }}" alt="" class="unikor-product-hero__testimonial-avatar" width="60" height="60">
+              {% else %}
+                <div class="unikor-product-hero__testimonial-avatar-placeholder">AM</div>
+              {% endif %}
+              <div>
+                <p class="unikor-product-hero__testimonial-quote">"I thought my kid would never stop wetting the bed."</p>
+                <p class="unikor-product-hero__testimonial-name">Amy M. ★★★★★</p>
+              </div>
+            </div>
+            <p class="unikor-product-hero__note">
+              <span class="unikor-product-hero__note-dot"></span> Note: For Limited Time: Free Reward Chart & Stickers Included
+            </p>
+          </div>
+        {% endif %}
+
+        {% if prices_block != blank %}
+          <div class="unikor-product-hero__prices" {{ prices_block.shopify_attributes }}>
+            <div class="unikor-product-hero__price-row">
+              {% if featured != blank and featured.compare_at_price > featured.price %}
+                <span class="unikor-product-hero__compare-price">{{ featured.compare_at_price | money }}</span>
+              {% elsif section.settings.compare_price != blank %}
+                <span class="unikor-product-hero__compare-price">{{ section.settings.compare_price }}</span>
+              {% endif %}
+              <span class="unikor-product-hero__price">{% if featured != blank %}{{ featured.price | money }}{% else %}{{ section.settings.price | default: '$44.00' }}{% endif %}</span>
+              {% if featured != blank and featured.compare_at_price > featured.price %}
+                {% assign save_pct = featured.compare_at_price | minus: featured.price | times: 100 | divided_by: featured.compare_at_price %}
+                <span class="unikor-product-hero__save-pill">SAVE {{ save_pct }}%</span>
+              {% elsif section.settings.save_percent != blank %}
+                <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
+              {% endif %}
+            </div>
+            <div class="unikor-product-hero__buy-more">
+              <h4 class="unikor-product-hero__buy-more-title">Buy more and save</h4>
+              <div class="unikor-product-hero__options">
+                <label class="unikor-product-hero__option">
+                  <input type="radio" name="quantity_tier" value="1" checked>
+                  <span class="unikor-product-hero__option-label">Buy 1 and save</span>
+                  <span class="unikor-product-hero__option-price">{% if featured != blank %}{{ featured.price | money }}{% else %}$44.00{% endif %}</span>
+                  <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
+                </label>
+                <label class="unikor-product-hero__option unikor-product-hero__option--popular">
+                  <input type="radio" name="quantity_tier" value="2">
+                  <span class="unikor-product-hero__option-label">Buy 2 and save 12%</span>
+                  <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.88 | round | money }}{% else %}$39.00{% endif %}</span>
+                  <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
+                  <span class="unikor-product-hero__option-badge">Most Popular</span>
+                </label>
+                <label class="unikor-product-hero__option">
+                  <input type="radio" name="quantity_tier" value="3">
+                  <span class="unikor-product-hero__option-label">Buy 3+ and save 20%</span>
+                  <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.8 | round | money }}{% else %}$35.00{% endif %}</span>
+                  <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
+                </label>
+              </div>
+            </div>
+            <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
+            {% if featured != blank %}
+              {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
+                <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
+                <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured.available %}disabled{% endunless %}>BUY NOW</button>
+              {% endform %}
+            {% else %}
+              <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
+            {% endif %}
+            <div class="unikor-product-hero__payments">
+              <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
+            </div>
+            <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="52de5856-5af3-49dd-a037-9b19978bbb15"></div>
+          </div>
+        {% endif %}
       </div>
-    </div>
+    {% else %}
+      {% comment %} Legacy layout: no blocks yet – single right column with everything {% endcomment %}
+      <div class="unikor-product-hero__media">
+        <div class="unikor-product-hero__main-wrap">
+          {% if featured != blank and featured.featured_media %}
+            <img
+              class="unikor-product-hero__main-img"
+              src="{{ featured.featured_media | image_url: width: 800 }}"
+              alt="{{ featured.featured_media.alt | default: featured.title }}"
+              width="800"
+              height="{{ 800 | divided_by: featured.featured_media.aspect_ratio | round }}"
+              loading="eager"
+            >
+          {% else %}
+            <div class="unikor-product-hero__img-placeholder"><span>Product image</span></div>
+          {% endif %}
+          <div class="unikor-product-hero__badge-overlay">MONEY BACK<br>60 DAYS<br>GUARANTEE</div>
+        </div>
+        <div class="unikor-product-hero__as-seen">
+          <span class="unikor-product-hero__as-seen-label">AS SEEN ON:</span>
+          <div class="unikor-product-hero__as-seen-logos">
+            {% if section.settings.as_seen_logo_1 != blank %}
+              <img src="{{ section.settings.as_seen_logo_1 | image_url: width: 80 }}" alt="" width="80" height="40">
+            {% else %}
+              <span class="unikor-product-hero__logo-placeholder">Parents</span>
+            {% endif %}
+            {% if section.settings.as_seen_logo_2 != blank %}
+              <img src="{{ section.settings.as_seen_logo_2 | image_url: width: 80 }}" alt="" width="80" height="40">
+            {% else %}
+              <span class="unikor-product-hero__logo-placeholder">abc</span>
+            {% endif %}
+            {% if section.settings.as_seen_logo_3 != blank %}
+              <img src="{{ section.settings.as_seen_logo_3 | image_url: width: 80 }}" alt="" width="80" height="40">
+            {% else %}
+              <span class="unikor-product-hero__logo-placeholder">WebMD</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="unikor-product-hero__thumbs-wrap">
+          <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--prev" aria-label="Previous">‹</button>
+          <div class="unikor-product-hero__thumbs">
+            {% if featured != blank and featured.media.size > 0 %}
+              {% for media in featured.media limit: 5 %}
+                <button type="button" class="unikor-product-hero__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ media | image_url: width: 800 }}" aria-label="Image {{ forloop.index }}">
+                  <img src="{{ media | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
+                </button>
+              {% endfor %}
+            {% else %}
+              <div class="unikor-product-hero__thumb-placeholder"><span>1</span></div>
+            {% endif %}
+          </div>
+          <button type="button" class="unikor-product-hero__thumb-arrow unikor-product-hero__thumb-arrow--next" aria-label="Next">›</button>
+        </div>
+      </div>
+
+      <div class="unikor-product-hero__info">
+        <h1 class="unikor-product-hero__title">{% if section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured != blank %}{{ featured.title }}{% else %}NightGuard Bedwetting Alarm{% endif %}</h1>
+        <div class="unikor-product-hero__reviews">
+          <span class="unikor-product-hero__stars">★★★★★</span>
+          <span class="unikor-product-hero__review-count">{{ section.settings.review_count }} reviews</span>
+        </div>
+        <div class="unikor-product-hero__price-row">
+          {% if featured != blank and featured.compare_at_price > featured.price %}
+            <span class="unikor-product-hero__compare-price">{{ featured.compare_at_price | money }}</span>
+          {% elsif section.settings.compare_price != blank %}
+            <span class="unikor-product-hero__compare-price">{{ section.settings.compare_price }}</span>
+          {% endif %}
+          <span class="unikor-product-hero__price">{% if featured != blank %}{{ featured.price | money }}{% else %}{{ section.settings.price | default: '$44.00' }}{% endif %}</span>
+          {% if featured != blank and featured.compare_at_price > featured.price %}
+            {% assign save_pct = featured.compare_at_price | minus: featured.price | times: 100 | divided_by: featured.compare_at_price %}
+            <span class="unikor-product-hero__save-pill">SAVE {{ save_pct }}%</span>
+          {% elsif section.settings.save_percent != blank %}
+            <span class="unikor-product-hero__save-pill">{{ section.settings.save_percent }}</span>
+          {% endif %}
+        </div>
+        <ul class="unikor-product-hero__bullets">
+          <li>Soft, lightweight sensor kids barely notice.</li>
+          <li>Wakes your child at the first drop - not the whole house</li>
+          <li>Proven method that trains lasting dry nights - or your money back</li>
+        </ul>
+        <div class="unikor-product-hero__testimonial">
+          {% if section.settings.testimonial_image != blank %}
+            <img src="{{ section.settings.testimonial_image | image_url: width: 60 }}" alt="" class="unikor-product-hero__testimonial-avatar" width="60" height="60">
+          {% else %}
+            <div class="unikor-product-hero__testimonial-avatar-placeholder">AM</div>
+          {% endif %}
+          <div>
+            <p class="unikor-product-hero__testimonial-quote">"I thought my kid would never stop wetting the bed."</p>
+            <p class="unikor-product-hero__testimonial-name">Amy M. ★★★★★</p>
+          </div>
+        </div>
+        <p class="unikor-product-hero__note">
+          <span class="unikor-product-hero__note-dot"></span> Note: For Limited Time: Free Reward Chart & Stickers Included
+        </p>
+        <div class="unikor-product-hero__buy-more">
+          <h4 class="unikor-product-hero__buy-more-title">Buy more and save</h4>
+          <div class="unikor-product-hero__options">
+            <label class="unikor-product-hero__option">
+              <input type="radio" name="quantity_tier" value="1" checked>
+              <span class="unikor-product-hero__option-label">Buy 1 and save</span>
+              <span class="unikor-product-hero__option-price">{% if featured != blank %}{{ featured.price | money }}{% else %}$44.00{% endif %}</span>
+              <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
+            </label>
+            <label class="unikor-product-hero__option unikor-product-hero__option--popular">
+              <input type="radio" name="quantity_tier" value="2">
+              <span class="unikor-product-hero__option-label">Buy 2 and save 12%</span>
+              <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.88 | round | money }}{% else %}$39.00{% endif %}</span>
+              <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
+              <span class="unikor-product-hero__option-badge">Most Popular</span>
+            </label>
+            <label class="unikor-product-hero__option">
+              <input type="radio" name="quantity_tier" value="3">
+              <span class="unikor-product-hero__option-label">Buy 3+ and save 20%</span>
+              <span class="unikor-product-hero__option-price">{% if featured != blank and featured.compare_at_price > 0 %}{{ featured.price | times: 0.8 | round | money }}{% else %}$35.00{% endif %}</span>
+              <span class="unikor-product-hero__option-compare">{% if featured != blank %}{{ featured.compare_at_price | default: featured.price | money }}{% else %}$84.00{% endif %}</span>
+            </label>
+          </div>
+        </div>
+        <p class="unikor-product-hero__setup">Setup support to ensure success<br><small>Free when you order 2+ alarms</small></p>
+        {% if featured != blank %}
+          {% form 'product', featured, id: 'product-form-featured', class: 'unikor-product-hero__form' %}
+            <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
+            <button type="submit" name="add" class="unikor-product-hero__btn-buy" {% unless featured.available %}disabled{% endunless %}>BUY NOW</button>
+          {% endform %}
+        {% else %}
+          <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="unikor-product-hero__btn-buy" style="display:block;text-align:center;text-decoration:none;line-height:3;">BUY NOW</a>
+        {% endif %}
+        <div class="unikor-product-hero__payments">
+          <span class="unikor-product-hero__payments-label">Shop Pay, G Pay, PayPal, Visa, Mastercard, American Express, Discover</span>
+        </div>
+        <div class="rbrFastBundlePage" data-view="automatic" bundle-ids="52de5856-5af3-49dd-a037-9b19978bbb15"></div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -171,6 +316,37 @@
     { "type": "image_picker", "id": "as_seen_logo_1", "label": "As seen on logo 1" },
     { "type": "image_picker", "id": "as_seen_logo_2", "label": "As seen on logo 2" },
     { "type": "image_picker", "id": "as_seen_logo_3", "label": "As seen on logo 3" }
+  ],
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Product images",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "prices",
+      "name": "Prices & CTA",
+      "limit": 1,
+      "settings": []
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured product (Harba)",
+      "settings": {},
+      "blocks": [
+        { "type": "media" },
+        { "type": "description" },
+        { "type": "prices" }
+      ]
+    }
   ]
 }
 {% endschema %}

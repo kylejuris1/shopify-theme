@@ -7,7 +7,7 @@
 
 <section class="unikor-related">
   <div class="page-width">
-    <h2 class="unikor-related__heading">{{ section.settings.heading | default: 'Check Out Our Wireless Version:' }}</h2>
+    <h2 class="unikor-related__heading">{{ section.settings.heading | default: 'Découvrez notre version sans fil :' }}</h2>
     <div class="unikor-related__grid">
       {% for prod in related %}
         <a href="{{ prod.url }}" class="unikor-related__card">
@@ -15,15 +15,15 @@
             {% if prod.featured_media %}
               <img src="{{ prod.featured_media | image_url: width: 500 }}" alt="{{ prod.title }}" width="500" height="{{ 500 | divided_by: prod.featured_media.aspect_ratio | round }}" loading="lazy">
             {% else %}
-              <div class="unikor-related__img-placeholder"><span>Product</span></div>
+              <div class="unikor-related__img-placeholder"><span>Produit</span></div>
             {% endif %}
             <span class="unikor-related__badge-60">60</span>
             <div class="unikor-related__badges">
               {% if prod.compare_at_price > prod.price %}
                 {% assign save_pct = prod.compare_at_price | minus: prod.price | times: 100 | divided_by: prod.compare_at_price %}
-                <span class="unikor-related__save">✓ SAVE {{ save_pct }}%</span>
+                <span class="unikor-related__save">✓ ÉCONOMISEZ {{ save_pct }}%</span>
               {% endif %}
-              <span class="unikor-related__as-seen">AS SEEN ON</span>
+              <span class="unikor-related__as-seen">VU DANS</span>
               <div class="unikor-related__logos">
                 <span class="unikor-related__logo-pill">abc</span>
                 <span class="unikor-related__logo-pill">WebMD</span>
@@ -42,11 +42,11 @@
       {% if related.size == 0 %}
         <a href="{{ routes.collections_url }}" class="unikor-related__card">
           <div class="unikor-related__img-wrap">
-            <div class="unikor-related__img-placeholder"><span>Product image</span></div>
+            <div class="unikor-related__img-placeholder"><span>Image du produit</span></div>
             <span class="unikor-related__badge-60">60</span>
             <div class="unikor-related__badges">
-              <span class="unikor-related__save">✓ SAVE 42%</span>
-              <span class="unikor-related__as-seen">AS SEEN ON</span>
+              <span class="unikor-related__save">✓ ÉCONOMISEZ 42%</span>
+              <span class="unikor-related__as-seen">VU DANS</span>
               <div class="unikor-related__logos">
                 <span class="unikor-related__logo-pill">abc</span>
                 <span class="unikor-related__logo-pill">WebMD</span>
@@ -70,7 +70,7 @@
   "class": "section-related-unikor",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Check Out Our Wireless Version:" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Découvrez notre version sans fil :" },
     { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "range", "id": "products_to_show", "min": 1, "max": 8, "step": 1, "label": "Products to show", "default": 4 }
   ]

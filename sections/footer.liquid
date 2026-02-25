@@ -10,8 +10,8 @@
           {% endif %}
         </a>
         <div class="unikor-footer__country">
-          <label for="footer-country">Country/region</label>
-          <select id="footer-country" class="unikor-footer__select" aria-label="Country/region">
+          <label for="footer-country">Pays / région</label>
+          <select id="footer-country" class="unikor-footer__select" aria-label="Pays / région">
             <option>United States (USD $)</option>
           </select>
         </div>
@@ -19,15 +19,15 @@
       <div class="unikor-footer__col">
         <h4 class="unikor-footer__heading">Support</h4>
         <ul class="unikor-footer__links">
-          <li><a href="{{ shop.policies.privacy_policy.url | default: '#' }}">Privacy Policy</a></li>
-          <li><a href="{{ shop.policies.refund_policy.url | default: '#' }}">Return Policy</a></li>
-          <li><a href="{{ routes.root_url }}pages/shipping">Shipping Info</a></li>
-          <li><a href="{{ shop.policies.terms_of_service.url | default: '#' }}">Terms of Service</a></li>
+          <li><a href="{{ shop.policies.privacy_policy.url | default: '#' }}">Politique de confidentialité</a></li>
+          <li><a href="{{ shop.policies.refund_policy.url | default: '#' }}">Politique de retour</a></li>
+          <li><a href="{{ routes.root_url }}pages/shipping">Livraison</a></li>
+          <li><a href="{{ shop.policies.terms_of_service.url | default: '#' }}">Conditions générales</a></li>
         </ul>
       </div>
       <div class="unikor-footer__col">
-        <h4 class="unikor-footer__heading">About</h4>
-        <p class="unikor-footer__about">{{ section.settings.about_text | default: "At Harba, we believe in making parents' lives easier with innovative, high-quality products that provide real solutions to everyday challenges." }}</p>
+        <h4 class="unikor-footer__heading">À propos</h4>
+        <p class="unikor-footer__about">{{ section.settings.about_text | default: "Chez Harba, nous croyons qu'il faut simplifier la vie des parents avec des produits innovants et de qualité qui apportent de vraies solutions au quotidien." }}</p>
         <div class="unikor-footer__payments">
           {% if section.settings.show_payment_icons %}
             <span class="unikor-footer__payment-placeholder">Shop Pay, Visa, Mastercard, American Express, Discover, Apple Pay, Google Pay, PayPal</span>
